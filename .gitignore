@@ -1,0 +1,7 @@
+
+*.o
+*.stash
+*.Debug
+*.Release
+build-qf_pc_assistant-Desktop_Qt_5_7_0_MinGW_32bit-Debug/Makefile
+*.user
