@@ -33,6 +33,10 @@ public:
     QComboBox *comboBox_prjName;
     QGroupBox *groupBox_2;
     QPushButton *pushButton_openFolder;
+    QGroupBox *groupBox_3;
+    QPushButton *pushButton_copy;
+    QComboBox *comboBox_drivePath;
+    QPushButton *pushButton_refreshDrives;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -56,6 +60,18 @@ public:
         pushButton_openFolder = new QPushButton(groupBox_2);
         pushButton_openFolder->setObjectName(QStringLiteral("pushButton_openFolder"));
         pushButton_openFolder->setGeometry(QRect(20, 30, 121, 31));
+        groupBox_3 = new QGroupBox(centralWidget);
+        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3->setGeometry(QRect(20, 200, 361, 80));
+        pushButton_copy = new QPushButton(groupBox_3);
+        pushButton_copy->setObjectName(QStringLiteral("pushButton_copy"));
+        pushButton_copy->setGeometry(QRect(20, 30, 101, 31));
+        comboBox_drivePath = new QComboBox(groupBox_3);
+        comboBox_drivePath->setObjectName(QStringLiteral("comboBox_drivePath"));
+        comboBox_drivePath->setGeometry(QRect(150, 30, 131, 31));
+        pushButton_refreshDrives = new QPushButton(groupBox_3);
+        pushButton_refreshDrives->setObjectName(QStringLiteral("pushButton_refreshDrives"));
+        pushButton_refreshDrives->setGeometry(QRect(290, 32, 61, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -79,6 +95,9 @@ public:
         groupBox->setTitle(QApplication::translate("MainWindow", "project", 0));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "operations", 0));
         pushButton_openFolder->setText(QApplication::translate("MainWindow", "open source code", 0));
+        groupBox_3->setTitle(QApplication::translate("MainWindow", "copy fw file", 0));
+        pushButton_copy->setText(QApplication::translate("MainWindow", "Copy", 0));
+        pushButton_refreshDrives->setText(QApplication::translate("MainWindow", "refresh", 0));
     } // retranslateUi
 
 };
