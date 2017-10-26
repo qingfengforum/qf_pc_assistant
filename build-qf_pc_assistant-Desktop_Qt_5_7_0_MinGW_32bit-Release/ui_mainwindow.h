@@ -33,6 +33,7 @@ public:
     QComboBox *comboBox_prjName;
     QGroupBox *groupBox_2;
     QPushButton *pushButton_openFolder;
+    QPushButton *pushButton_setFolder;
     QGroupBox *groupBox_3;
     QPushButton *pushButton_copy;
     QComboBox *comboBox_drivePath;
@@ -62,6 +63,9 @@ public:
         pushButton_openFolder = new QPushButton(groupBox_2);
         pushButton_openFolder->setObjectName(QStringLiteral("pushButton_openFolder"));
         pushButton_openFolder->setGeometry(QRect(20, 30, 121, 31));
+        pushButton_setFolder = new QPushButton(groupBox_2);
+        pushButton_setFolder->setObjectName(QStringLiteral("pushButton_setFolder"));
+        pushButton_setFolder->setGeometry(QRect(490, 20, 111, 31));
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         groupBox_3->setGeometry(QRect(20, 200, 321, 80));
@@ -103,6 +107,7 @@ public:
         groupBox->setTitle(QApplication::translate("MainWindow", "project", 0));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "operations", 0));
         pushButton_openFolder->setText(QApplication::translate("MainWindow", "open source code", 0));
+        pushButton_setFolder->setText(QApplication::translate("MainWindow", "set folder", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "copy fw file", 0));
         pushButton_copy->setText(QApplication::translate("MainWindow", "Copy", 0));
         pushButton_refreshDrives->setText(QApplication::translate("MainWindow", "refresh", 0));
