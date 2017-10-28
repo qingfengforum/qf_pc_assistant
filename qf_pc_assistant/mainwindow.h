@@ -41,11 +41,8 @@ public:
 
 private slots:
     void on_pushButton_openFolder_clicked();
-
     void on_pushButton_copy_clicked();
-
     void on_pushButton_refreshDrives_clicked();
-
     void on_pushButton_startCommTool_clicked();
 
     /** mouse event */
@@ -69,6 +66,8 @@ private:
 
     /** hide when move to the edge*/
     int edgeStatus;
+    int m_pressed;
+    QPoint m_pressed_pos;
 };
 
 #endif // MAINWINDOW_H

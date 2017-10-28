@@ -141,47 +141,49 @@ void MainWindow::on_pushButton_startCommTool_clicked()
 }
 
 #define SHOW_EDGE_WIDTH 3
-int press_yes = 0;
-QPoint origenPoint;
 void MainWindow::leaveEvent(QEvent *event)
 {
-    qDebug() << __func__;
+    /* if mouse in the windows, do not hide windows */
+    if (QCursor::pos().x() >= geometry().x() && QCursor::pos().x() < geometry().x()+width()
+        && QCursor::pos().y() >= geometry().y() && QCursor::pos().y() < geometry().y()+height()
+        ) {
+        return;
+    }
+
     switch (edgeStatus) {
     case EDG_TOP:
-        setGeometry(pos().x(), -height() + SHOW_EDGE_WIDTH, width(), height());
+        setGeometry(geometry().x(), -height() + SHOW_EDGE_WIDTH, width(), height());
         break;
     case EDG_LEFT:
-        setGeometry(-width() + SHOW_EDGE_WIDTH, pos().y(), width(), height());
+        setGeometry(-width() + SHOW_EDGE_WIDTH, geometry().y(), width(), height());
         break;
     case EDG_RIGHT:
-        setGeometry(QApplication::desktop()->width() - SHOW_EDGE_WIDTH, pos().y(), width(), height());
+        setGeometry(QApplication::desktop()->width() - SHOW_EDGE_WIDTH, geometry().y(), width(), height());
         break;
     }
+    qDebug() << "leave (end): " << geometry();
     return QWidget::leaveEvent(event);
 }
 void MainWindow::enterEvent(QEvent *event)
 {
-    qDebug() << __func__;
+
     switch (edgeStatus) {
     case EDG_TOP:
-        setGeometry(pos().x(), -1, width(), height());
+        setGeometry(geometry().x(), -SHOW_EDGE_WIDTH, width(), height());
         break;
     case EDG_LEFT:
-        setGeometry(-SHOW_EDGE_WIDTH, y(), width(), height());
+        setGeometry(-SHOW_EDGE_WIDTH, geometry().y(), width(), height());
         break;
     case EDG_RIGHT:
-        setGeometry(QApplication::desktop()->width() - width() + SHOW_EDGE_WIDTH, y(), width(), height());
+        setGeometry(QApplication::desktop()->width() - width() + SHOW_EDGE_WIDTH, geometry().y(), width(), height());
         break;
     }
-    return QWidget::enterEvent(event);
 
-    //setGeometry(QApplication::desktop()->width() - width() + SHOW_EDGE_WIDTH, y(), width(), height());
+    return QWidget::enterEvent(event);
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent*event)
 {
-    qDebug() << __func__;
-#if 0
     if (y() <= 0)
     {
         edgeStatus = EDG_TOP;
@@ -198,27 +200,22 @@ void MainWindow::mouseReleaseEvent(QMouseEvent*event)
     {
         edgeStatus = EDG_NORMAL;
     }
-#endif
-    press_yes = 0;
+
+    m_pressed = 0;
     return QWidget::mouseReleaseEvent(event);
 }
 void MainWindow::mouseMoveEvent(QMouseEvent*event)
 {
-    qDebug() << __func__;
-    if (press_yes) {
-        QPoint currentPoint;
-        currentPoint.setX(pos().x() + event->globalPos().x() - origenPoint.x());
-        currentPoint.setY(pos().y() + event->globalPos().y() - origenPoint.y());
-        setGeometry(currentPoint.x(), currentPoint.y(), width(), height());
+    if (m_pressed) {
+        QPoint move_pos = event->globalPos();
+        this->move(this->pos() + move_pos - m_pressed_pos);
+        m_pressed_pos = move_pos;
     }
 }
 void MainWindow::mousePressEvent(QMouseEvent*event)
 {
-    qDebug() << __func__;
-    press_yes = 1;
-    origenPoint.setX(event->globalPos().x());
-    origenPoint.setY(event->globalPos().y());
-
+    m_pressed = 1;
+    m_pressed_pos = event->globalPos();
 }
 
 void MainWindow::on_pushButton_setFolder_clicked()
