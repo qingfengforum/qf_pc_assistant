@@ -12,6 +12,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+#define SHOW_EDGE_WIDTH 3
     enum {
         PRJ_VF11 = 0,
         PRJ_FE6,
@@ -44,6 +45,7 @@ private slots:
     void on_pushButton_copy_clicked();
     void on_pushButton_refreshDrives_clicked();
     void on_pushButton_startCommTool_clicked();
+    void on_pushButton_setFolder_clicked();
 
     /** mouse event */
     void leaveEvent(QEvent *event);
@@ -51,7 +53,7 @@ private slots:
     void mouseReleaseEvent(QMouseEvent*event);
     void mouseMoveEvent(QMouseEvent*event);
     void mousePressEvent(QMouseEvent*event);
-    void on_pushButton_setFolder_clicked();
+
 
 private:
     void initComboBox();

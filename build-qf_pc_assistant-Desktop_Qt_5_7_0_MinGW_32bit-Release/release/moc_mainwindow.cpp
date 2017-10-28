@@ -35,25 +35,25 @@ QT_MOC_LITERAL(2, 44, 0), // ""
 QT_MOC_LITERAL(3, 45, 26), // "on_pushButton_copy_clicked"
 QT_MOC_LITERAL(4, 72, 35), // "on_pushButton_refreshDrives_c..."
 QT_MOC_LITERAL(5, 108, 35), // "on_pushButton_startCommTool_c..."
-QT_MOC_LITERAL(6, 144, 10), // "leaveEvent"
-QT_MOC_LITERAL(7, 155, 7), // "QEvent*"
-QT_MOC_LITERAL(8, 163, 5), // "event"
-QT_MOC_LITERAL(9, 169, 10), // "enterEvent"
-QT_MOC_LITERAL(10, 180, 17), // "mouseReleaseEvent"
-QT_MOC_LITERAL(11, 198, 12), // "QMouseEvent*"
-QT_MOC_LITERAL(12, 211, 14), // "mouseMoveEvent"
-QT_MOC_LITERAL(13, 226, 15), // "mousePressEvent"
-QT_MOC_LITERAL(14, 242, 31) // "on_pushButton_setFolder_clicked"
+QT_MOC_LITERAL(6, 144, 31), // "on_pushButton_setFolder_clicked"
+QT_MOC_LITERAL(7, 176, 10), // "leaveEvent"
+QT_MOC_LITERAL(8, 187, 7), // "QEvent*"
+QT_MOC_LITERAL(9, 195, 5), // "event"
+QT_MOC_LITERAL(10, 201, 10), // "enterEvent"
+QT_MOC_LITERAL(11, 212, 17), // "mouseReleaseEvent"
+QT_MOC_LITERAL(12, 230, 12), // "QMouseEvent*"
+QT_MOC_LITERAL(13, 243, 14), // "mouseMoveEvent"
+QT_MOC_LITERAL(14, 258, 15) // "mousePressEvent"
 
     },
     "MainWindow\0on_pushButton_openFolder_clicked\0"
     "\0on_pushButton_copy_clicked\0"
     "on_pushButton_refreshDrives_clicked\0"
     "on_pushButton_startCommTool_clicked\0"
+    "on_pushButton_setFolder_clicked\0"
     "leaveEvent\0QEvent*\0event\0enterEvent\0"
     "mouseReleaseEvent\0QMouseEvent*\0"
-    "mouseMoveEvent\0mousePressEvent\0"
-    "on_pushButton_setFolder_clicked"
+    "mouseMoveEvent\0mousePressEvent"
 };
 #undef QT_MOC_LITERAL
 
@@ -75,24 +75,24 @@ static const uint qt_meta_data_MainWindow[] = {
        3,    0,   65,    2, 0x08 /* Private */,
        4,    0,   66,    2, 0x08 /* Private */,
        5,    0,   67,    2, 0x08 /* Private */,
-       6,    1,   68,    2, 0x08 /* Private */,
-       9,    1,   71,    2, 0x08 /* Private */,
-      10,    1,   74,    2, 0x08 /* Private */,
-      12,    1,   77,    2, 0x08 /* Private */,
-      13,    1,   80,    2, 0x08 /* Private */,
-      14,    0,   83,    2, 0x08 /* Private */,
+       6,    0,   68,    2, 0x08 /* Private */,
+       7,    1,   69,    2, 0x08 /* Private */,
+      10,    1,   72,    2, 0x08 /* Private */,
+      11,    1,   75,    2, 0x08 /* Private */,
+      13,    1,   78,    2, 0x08 /* Private */,
+      14,    1,   81,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    8,
-    QMetaType::Void, 0x80000000 | 7,    8,
-    QMetaType::Void, 0x80000000 | 11,    8,
-    QMetaType::Void, 0x80000000 | 11,    8,
-    QMetaType::Void, 0x80000000 | 11,    8,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void, 0x80000000 | 12,    9,
+    QMetaType::Void, 0x80000000 | 12,    9,
+    QMetaType::Void, 0x80000000 | 12,    9,
 
        0        // eod
 };
@@ -107,12 +107,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_pushButton_copy_clicked(); break;
         case 2: _t->on_pushButton_refreshDrives_clicked(); break;
         case 3: _t->on_pushButton_startCommTool_clicked(); break;
-        case 4: _t->leaveEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
-        case 5: _t->enterEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
-        case 6: _t->mouseReleaseEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        case 7: _t->mouseMoveEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        case 8: _t->mousePressEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        case 9: _t->on_pushButton_setFolder_clicked(); break;
+        case 4: _t->on_pushButton_setFolder_clicked(); break;
+        case 5: _t->leaveEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
+        case 6: _t->enterEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
+        case 7: _t->mouseReleaseEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 8: _t->mouseMoveEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 9: _t->mousePressEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
         default: ;
         }
     }

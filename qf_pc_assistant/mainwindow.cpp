@@ -38,59 +38,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::initComboBox()
-{
-    /** project comboBox */
-    for (int i=0; prj_info_table[i].prj_idx != PRJ_END; i++) {
-        PRJ_INFO_s prj_info = {};
-        prj_info.prj_path = prj_info_table[i].prj_path;
-        prj_map.insert(prj_info_table[i].prj_idx, prj_info_table[i]);
-    }
-
-    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
-        ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name);
-    }
-    //ui->comboBox_prjName->addItem(prj_map.value(PRJ_VF11).prj_name, PRJ_VF11);
-
-    /** drives list */
-    refreshDrives();
-}
-
-bool MainWindow::copyFile(QString srcFilenName, QString destFileName, bool overRideFile)
-{
-    srcFilenName.replace("\\", "/");
-    destFileName.replace("\\","/");
-    if (srcFilenName == destFileName){
-        return true;
-    }
-    if (!QFile::exists(srcFilenName)){
-        return false;
-    }
-    QDir *createfile     = new QDir;
-    bool exist = createfile->exists(destFileName);
-    if (exist){
-        if(overRideFile){
-            createfile->remove(destFileName);
-        }
-    }//end if
-
-    if(!QFile::copy(srcFilenName, destFileName))
-    {
-        return false;
-    }
-    return true;
-}
-
-
-void MainWindow::refreshDrives()
-{
-    QFileInfoList drvs = QDir::drives();
-
-    for (int i=0; i<drvs.size(); i++) {
-       ui->comboBox_drivePath->addItem(drvs.at(i).absolutePath());
-    }
-}
-
+/******************************************/
+/******* private slot *********************/
+/******************************************/
 void MainWindow::on_pushButton_openFolder_clicked()
 {
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
@@ -140,7 +90,12 @@ void MainWindow::on_pushButton_startCommTool_clicked()
     }
 }
 
-#define SHOW_EDGE_WIDTH 3
+void MainWindow::on_pushButton_setFolder_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("select file"), "", "");
+    qDebug() << fileName;
+}
+
 void MainWindow::leaveEvent(QEvent *event)
 {
     /* if mouse in the windows, do not hide windows */
@@ -218,8 +173,57 @@ void MainWindow::mousePressEvent(QMouseEvent*event)
     m_pressed_pos = event->globalPos();
 }
 
-void MainWindow::on_pushButton_setFolder_clicked()
+/******************************************************
+ * private funcs
+ * ****************************************************/
+void MainWindow::initComboBox()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("select file"), "", "");
-    qDebug() << fileName;
+    /** project comboBox */
+    for (int i=0; prj_info_table[i].prj_idx != PRJ_END; i++) {
+        PRJ_INFO_s prj_info = {};
+        prj_info.prj_path = prj_info_table[i].prj_path;
+        prj_map.insert(prj_info_table[i].prj_idx, prj_info_table[i]);
+    }
+
+    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+        ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name);
+    }
+
+    /** drives list */
+    refreshDrives();
+}
+
+bool MainWindow::copyFile(QString srcFilenName, QString destFileName, bool overRideFile)
+{
+    srcFilenName.replace("\\", "/");
+    destFileName.replace("\\","/");
+    if (srcFilenName == destFileName){
+        return true;
+    }
+    if (!QFile::exists(srcFilenName)){
+        return false;
+    }
+    QDir *createfile     = new QDir;
+    bool exist = createfile->exists(destFileName);
+    if (exist){
+        if(overRideFile){
+            createfile->remove(destFileName);
+        }
+    }//end if
+
+    if(!QFile::copy(srcFilenName, destFileName))
+    {
+        return false;
+    }
+    return true;
+}
+
+
+void MainWindow::refreshDrives()
+{
+    QFileInfoList drvs = QDir::drives();
+
+    for (int i=0; i<drvs.size(); i++) {
+       ui->comboBox_drivePath->addItem(drvs.at(i).absolutePath());
+    }
 }
