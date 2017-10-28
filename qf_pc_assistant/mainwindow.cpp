@@ -9,7 +9,7 @@
 #include <QFileDialog>
 #include <QMouseEvent>
 
-MainWindow::PRJ_INFO_s MainWindow::prj_info_table[] = {
+PRJ_INFO_s MainWindow::prj_info_table[] = {
     // prj_idx, prj_name, prj_source_code_path, prj_bin_file_path, prj_bin_file_name,prj_tool_path
     {PRJ_VF11,  "VF11", "Z:\\fwd_svn\\vf11\\debug\\rtos", "Z:\\fwd_svn\\vf11\\debug\\rtos\\output\\out\\fwprog\\devfw\\", "VF_11.bin"
                      , "E:\\Project\\VF11\\03_tools\\my_uart_tool\\vf11\\v0.0\\vf_11_0.0.exe"},
@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
     initComboBox();
     edgeStatus = 0;
 
+    /** stuff init */
+    dialogConfig = new Dialog_config(this);
 
 }
 
@@ -96,6 +98,21 @@ void MainWindow::on_pushButton_setFolder_clicked()
     qDebug() << fileName;
 }
 
+void MainWindow::on_pushButton_config_clicked()
+{
+    dialogConfig->show();
+}
+
+void MainWindow::on_pushButton_configSave_clicked()
+{
+    saveConfig();
+}
+
+void MainWindow::on_pushButton_configLoad_clicked()
+{
+    loadConfig();
+}
+
 void MainWindow::leaveEvent(QEvent *event)
 {
     /* if mouse in the windows, do not hide windows */
@@ -116,7 +133,7 @@ void MainWindow::leaveEvent(QEvent *event)
         setGeometry(QApplication::desktop()->width() - SHOW_EDGE_WIDTH, geometry().y(), width(), height());
         break;
     }
-    qDebug() << "leave (end): " << geometry();
+
     return QWidget::leaveEvent(event);
 }
 void MainWindow::enterEvent(QEvent *event)
@@ -227,3 +244,67 @@ void MainWindow::refreshDrives()
        ui->comboBox_drivePath->addItem(drvs.at(i).absolutePath());
     }
 }
+
+void MainWindow::loadConfig()
+{
+    /* open file */
+    QFile configSettings("config.txt");
+    QTextStream fileIn(&configSettings);
+
+    if (!configSettings.open(QFile::ReadOnly)) {
+        qDebug() << "open file error";
+        return;
+    }
+
+    qDebug() << fileIn.readLine();
+
+    while (!fileIn.atEnd()) {
+        QString line = fileIn.readLine();
+        QStringList lineList = line.split(',', QString::SkipEmptyParts);
+        int prj_key = lineList.at(0).toInt();
+        PRJ_INFO_s prj_info;
+        prj_info.prj_idx = prj_key;
+        prj_info.prj_name = lineList.at(1);
+        prj_info.prj_path = lineList.at(2);
+        prj_info.bin_file_path = lineList.at(3);
+        prj_info.bin_file_name = lineList.at(4);
+        prj_info.prj_tool_path = lineList.at(5);
+        prj_map.insert(prj_key, prj_info);
+
+    }
+
+    configSettings.close();
+}
+
+void MainWindow::saveConfig()
+{
+    /* open file */
+    QFile configSettings("config.txt");
+
+
+    if (!configSettings.open(QFile::WriteOnly | QFile::Truncate)) {
+        qDebug() << "open file error";
+        return ;
+    }
+
+    QTextStream out(&configSettings);
+    /* head */
+    out << "prjidx" << "," <<"prj_name" << "," << "prj_path" << "bin_file_path" << "bin_file_name" << "prj_tool_path" <<endl;
+
+    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+        QString str_prjKey = QString("%1").arg(i.key());
+        out << str_prjKey << ","
+            << prj_map.value(i.key()).prj_name << ","
+            << prj_map.value(i.key()).prj_path << ","
+            << prj_map.value(i.key()).bin_file_path << ","
+            << prj_map.value(i.key()).bin_file_name << ","
+            << prj_map.value(i.key()).prj_tool_path << ","
+            << endl;
+    }
+
+    configSettings.close();
+}
+
+
+
+

@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>281</width>
+      <width>171</width>
       <height>61</height>
      </rect>
     </property>
@@ -31,7 +31,7 @@
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>251</width>
+       <width>131</width>
        <height>22</height>
       </rect>
      </property>
@@ -42,7 +42,7 @@
      <rect>
       <x>10</x>
       <y>90</y>
-      <width>621</width>
+      <width>451</width>
       <height>80</height>
      </rect>
     </property>
@@ -65,8 +65,8 @@
     <widget class="QPushButton" name="pushButton_setFolder">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>20</y>
+       <x>170</x>
+       <y>30</y>
        <width>111</width>
        <height>31</height>
       </rect>
@@ -79,8 +79,8 @@
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>200</y>
+      <x>10</x>
+      <y>190</y>
       <width>321</width>
       <height>80</height>
      </rect>
@@ -128,8 +128,8 @@
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
-      <x>389</x>
-      <y>200</y>
+      <x>10</x>
+      <y>280</y>
       <width>241</width>
       <height>80</height>
      </rect>
@@ -150,6 +150,45 @@
       <string>start comm tool</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_config">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>config</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_configSave">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>50</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>save</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_configLoad">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

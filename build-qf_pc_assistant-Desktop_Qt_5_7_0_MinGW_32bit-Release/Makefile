@@ -182,6 +182,7 @@ Makefile: ../qf_pc_assistant/qf_pc_assistant.pro D:/install/QT/5.7/mingw53_32/mk
 		D:/install/QT/5.7/mingw53_32/mkspecs/features/win32/qt_config.prf \
 		D:/install/QT/5.7/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		D:/install/QT/5.7/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/install/QT/5.7/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		D:/install/QT/5.7/mingw53_32/mkspecs/features/default_pre.prf \
 		D:/install/QT/5.7/mingw53_32/mkspecs/features/win32/default_pre.prf \
@@ -331,6 +332,7 @@ D:/install/QT/5.7/mingw53_32/mkspecs/features/qt_config.prf:
 D:/install/QT/5.7/mingw53_32/mkspecs/features/win32/qt_config.prf:
 D:/install/QT/5.7/mingw53_32/mkspecs/win32-g++/qmake.conf:
 D:/install/QT/5.7/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/install/QT/5.7/mingw53_32/mkspecs/features/exclusive_builds.prf:
 D:/install/QT/5.7/mingw53_32/mkspecs/features/default_pre.prf:
 D:/install/QT/5.7/mingw53_32/mkspecs/features/win32/default_pre.prf:
