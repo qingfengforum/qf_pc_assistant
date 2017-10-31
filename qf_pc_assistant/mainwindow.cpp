@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "dialog_menu_addproject.h"
 
 #include <QDebug>
 #include <QProcess>
@@ -32,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /** stuff init */
     dialogConfig = new Dialog_config(this);
+
+    /** connect signals */
+    initMenuContext();
 
 }
 
@@ -191,6 +195,13 @@ void MainWindow::mousePressEvent(QMouseEvent*event)
     m_pressed_pos = event->globalPos();
 }
 
+/** actions */
+void MainWindow::action_addPrj()
+{
+    Dialog_menu_addProject* add_project = new Dialog_menu_addProject(this);
+    add_project->show();
+}
+
 /******************************************************
  * private funcs
  * ****************************************************/
@@ -244,6 +255,13 @@ void MainWindow::refreshDrives()
     for (int i=0; i<drvs.size(); i++) {
        ui->comboBox_drivePath->addItem(drvs.at(i).absolutePath());
     }
+}
+
+void MainWindow::initMenuContext()
+{
+    /** 信息栏提示 */
+    ui->actionAdd_project->setStatusTip("add project");
+    connect(ui->actionAdd_project, &QAction::triggered, this, &MainWindow::action_addPrj);
 }
 
 void MainWindow::loadConfig()
@@ -306,6 +324,15 @@ void MainWindow::saveConfig()
     configSettings.close();
 }
 
+void MainWindow::refreshComboBox_prjName()
+{
+    ui->comboBox_prjName->clear();
+
+    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+        ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name, prj_map.value(i.key()).prj_idx);
+    }
+}
+
 /********************************************************
  * public funcs
  * ******************************************************/
@@ -318,5 +345,14 @@ void MainWindow::setPrjInfo(PRJ_INFO_s prjInfo)
     prj_map[prjInfo.prj_idx] = prjInfo;
 }
 
+void MainWindow::addPrjInfo(PRJ_INFO_s prjInfo)
+{
+    prjInfo.prj_idx = prj_map.size()+1;
+    qDebug() << "size : " << prj_map.size() << "indx: " << prjInfo.prj_idx;
+    prj_map.insert(prjInfo.prj_idx, prjInfo);
+    refreshComboBox_prjName();
+
+
+}
 
 

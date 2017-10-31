@@ -62,19 +62,26 @@ private slots:
     void mousePressEvent(QMouseEvent*event);
 
 
+    /** actions */
+    void action_addPrj();
 
 private:
     void initComboBox();
     bool copyFile(QString srcFilenName, QString destFileName, bool overRideFile);
     void refreshDrives();
+    void initMenuContext();
 
     /** save and load */
     void loadConfig();
     void saveConfig();
 
+    /** refresh */
+    void refreshComboBox_prjName();
+
 public:
     QMap<int, PRJ_INFO_s> getPrjInfoMap();
     void setPrjInfo(PRJ_INFO_s prjInfo);
+    void addPrjInfo(PRJ_INFO_s prjInfo);
 public:
     static PRJ_INFO_s prj_info_table[];
     QMap<int, PRJ_INFO_s> prj_map;

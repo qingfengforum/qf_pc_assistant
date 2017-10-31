@@ -14,11 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    dialog_config.cpp
+    dialog_config.cpp \
+    dialog_menu_addproject.cpp
 
 HEADERS  += mainwindow.h \
-    dialog_config.h
+    dialog_config.h \
+    dialog_menu_addproject.h
 
 FORMS    += mainwindow.ui \
-    dialog_config.ui
+    dialog_config.ui \
+    dialog_menu_addproject.ui
 LIBS += -lUser32

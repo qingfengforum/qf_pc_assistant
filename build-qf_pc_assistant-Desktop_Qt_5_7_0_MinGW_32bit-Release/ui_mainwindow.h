@@ -17,6 +17,7 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -28,6 +29,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionAdd_project;
     QWidget *centralWidget;
     QGroupBox *groupBox;
     QComboBox *comboBox_prjName;
@@ -44,6 +46,7 @@ public:
     QPushButton *pushButton_configSave;
     QPushButton *pushButton_configLoad;
     QMenuBar *menuBar;
+    QMenu *menuFile;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -52,6 +55,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(664, 641);
+        actionAdd_project = new QAction(MainWindow);
+        actionAdd_project->setObjectName(QStringLiteral("actionAdd_project"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox = new QGroupBox(centralWidget);
@@ -100,6 +105,8 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 664, 23));
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -108,6 +115,9 @@ public:
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
+        menuBar->addAction(menuFile->menuAction());
+        menuFile->addAction(actionAdd_project);
+
         retranslateUi(MainWindow);
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -115,7 +125,8 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "qf pc assistant", 0));
+        actionAdd_project->setText(QApplication::translate("MainWindow", "add project", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "project", 0));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "operations", 0));
         pushButton_openFolder->setText(QApplication::translate("MainWindow", "open source code", 0));
@@ -128,6 +139,7 @@ public:
         pushButton_config->setText(QApplication::translate("MainWindow", "config", 0));
         pushButton_configSave->setText(QApplication::translate("MainWindow", "save", 0));
         pushButton_configLoad->setText(QApplication::translate("MainWindow", "Load", 0));
+        menuFile->setTitle(QApplication::translate("MainWindow", "file", 0));
     } // retranslateUi
 
 };
