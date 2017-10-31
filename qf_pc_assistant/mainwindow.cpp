@@ -100,6 +100,7 @@ void MainWindow::on_pushButton_setFolder_clicked()
 
 void MainWindow::on_pushButton_config_clicked()
 {
+    dialogConfig->initDialogConfig();
     dialogConfig->show();
 }
 
@@ -203,7 +204,7 @@ void MainWindow::initComboBox()
     }
 
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
-        ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name);
+        ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name, prj_map.value(i.key()).prj_idx);
     }
 
     /** drives list */
@@ -305,6 +306,17 @@ void MainWindow::saveConfig()
     configSettings.close();
 }
 
+/********************************************************
+ * public funcs
+ * ******************************************************/
+QMap<int, PRJ_INFO_s> MainWindow::getPrjInfoMap()
+{
+    return prj_map;
+}
+void MainWindow::setPrjInfo(PRJ_INFO_s prjInfo)
+{
+    prj_map[prjInfo.prj_idx] = prjInfo;
+}
 
 
 

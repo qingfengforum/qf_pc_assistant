@@ -1,4 +1,4 @@
 prjidx,prj_name,prj_pathbin_file_pathbin_file_nameprj_tool_path
-0,VF11,Z:\fwd_svn\vf11\debug\rtos,Z:\fwd_svn\vf11\debug\rtos\output\out\fwprog\devfw\,VF_11.bin,E:\Project\VF11\03_tools\my_uart_tool\vf11\v0.0\vf_11_0.0.exe,
-1,FE6,Z:\fwd_svn\fe6\debug\rtos,Z:\fwd_svn\fe6\debug\rtos\output\out\fwprog\devfw,FE_6.bin,E:\Project\VF11\03_tools\my_uart_tool\vf11\v0.0\vf_11_0.0.exe,
-2,S331,Z:\fwd_svn\s331\debug\rtos,Z:\fwd_svn\s331\debug\rtos\output\out\fwprog\devfw\,S331.bin,E:\Project\s331\03_tools\my_comm_tool\s331_v0.0\S331.exe,
+1,VF11,Z:\fwd_svn\vf11\debug\rtos,Z:\fwd_svn\vf11\debug\rtos\output\out\fwprog\devfw\,VF_11.bin,E:\Project\VF11\03_tools\my_uart_tool\vf11\v0.0\vf_11_0.0.exe,
+2,FE6,Z:\fwd_svn\fe6\debug\rtos,Z:\fwd_svn\fe6\debug\rtos\output\out\fwprog\devfw,FE_6.bin,E:\Project\VF11\03_tools\my_uart_tool\vf11\v0.0\vf_11_0.0.exe,
+3,S331,Z:\fwd_svn\s331\debug\rtos,Z:\fwd_svn\s331\debug\rtos\output\out\fwprog\devfw\,S331.bin,E:\Project\s331\03_tools\my_comm_tool\s331_v0.0\S331.exe,

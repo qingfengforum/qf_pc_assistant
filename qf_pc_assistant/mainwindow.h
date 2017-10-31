@@ -6,7 +6,7 @@
 #include "dialog_config.h"
 
 enum {
-    PRJ_VF11 = 0,
+    PRJ_VF11 = 1,
     PRJ_FE6,
     PRJ_S331,
     PRJ_END,
@@ -24,6 +24,8 @@ typedef struct _PRJ_INFO_s_{
 namespace Ui {
 class MainWindow;
 }
+
+class Dialog_config;
 
 class MainWindow : public QMainWindow
 {
@@ -71,8 +73,12 @@ private:
     void saveConfig();
 
 public:
+    QMap<int, PRJ_INFO_s> getPrjInfoMap();
+    void setPrjInfo(PRJ_INFO_s prjInfo);
+public:
     static PRJ_INFO_s prj_info_table[];
     QMap<int, PRJ_INFO_s> prj_map;
+
 private:
     Ui::MainWindow *ui;
 
