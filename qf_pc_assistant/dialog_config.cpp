@@ -33,6 +33,7 @@ void Dialog_config::initDialogConfig()
 void Dialog_config::initDialog()
 {
     //QMap<int, PRJ_INFO_s> prj_map = dialogConfig_parent->getPrjInfoMap();
+    ui->comboBox_prj->clear();
 
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
         ui->comboBox_prj->addItem(prj_map.value(i.key()).prj_name, prj_map.value(i.key()).prj_idx);
