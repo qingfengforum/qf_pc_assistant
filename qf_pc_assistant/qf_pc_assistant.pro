@@ -21,3 +21,4 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     dialog_config.ui
+LIBS += -lUser32
