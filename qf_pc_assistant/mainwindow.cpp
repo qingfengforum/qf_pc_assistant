@@ -280,6 +280,7 @@ void MainWindow::loadConfig()
     while (!fileIn.atEnd()) {
         QString line = fileIn.readLine();
         QStringList lineList = line.split(',', QString::SkipEmptyParts);
+        qDebug() << "lineList.size = " << lineList.size();
         int prj_key = lineList.at(0).toInt();
         PRJ_INFO_s prj_info;
         prj_info.prj_idx = prj_key;
@@ -288,6 +289,23 @@ void MainWindow::loadConfig()
         prj_info.bin_file_path = lineList.at(3);
         prj_info.bin_file_name = lineList.at(4);
         prj_info.prj_tool_path = lineList.at(5);
+
+        if (prj_info.prj_path == "-") {
+            prj_info.prj_path = "";
+        }
+
+        if (prj_info.bin_file_path == "-") {
+            prj_info.bin_file_path = "";
+        }
+
+        if (prj_info.bin_file_name == "-") {
+            prj_info.bin_file_name = "";
+        }
+
+        if (prj_info.prj_tool_path == "-") {
+            prj_info.prj_tool_path = "";
+        }
+
         prj_map.insert(prj_key, prj_info);
 
     }
@@ -312,12 +330,35 @@ void MainWindow::saveConfig()
 
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
         QString str_prjKey = QString("%1").arg(i.key());
+        QString prj_name = prj_map.value(i.key()).prj_name;
+        QString prj_path = prj_map.value(i.key()).prj_path;
+        QString bin_file_path = prj_map.value(i.key()).bin_file_path;
+        QString bin_file_name = prj_map.value(i.key()).bin_file_name;
+        QString prj_tool_path = prj_map.value(i.key()).prj_tool_path;
+
+        if (prj_name == nullptr) {
+            continue;
+        }
+
+        if (prj_path == nullptr) {
+            prj_path = "-";
+        }
+        if (bin_file_path == nullptr) {
+            bin_file_path = "-";
+        }
+        if (bin_file_name == nullptr) {
+            bin_file_name = "-";
+        }
+        if (prj_tool_path == nullptr) {
+            prj_tool_path = "-";
+        }
+
         out << str_prjKey << ","
-            << prj_map.value(i.key()).prj_name << ","
-            << prj_map.value(i.key()).prj_path << ","
-            << prj_map.value(i.key()).bin_file_path << ","
-            << prj_map.value(i.key()).bin_file_name << ","
-            << prj_map.value(i.key()).prj_tool_path << ","
+            << prj_name << ","
+            << prj_path << ","
+            << bin_file_path << ","
+            << bin_file_name << ","
+            << prj_tool_path << ","
             << endl;
     }
 
