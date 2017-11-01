@@ -96,12 +96,6 @@ void MainWindow::on_pushButton_startCommTool_clicked()
     }
 }
 
-void MainWindow::on_pushButton_setFolder_clicked()
-{
-    QString fileName = QFileDialog::getOpenFileName(this, tr("select file"), "", "");
-    qDebug() << fileName;
-}
-
 void MainWindow::on_pushButton_config_clicked()
 {
     dialogConfig->initDialogConfig();
@@ -253,7 +247,14 @@ void MainWindow::refreshDrives()
     QFileInfoList drvs = QDir::drives();
 
     for (int i=0; i<drvs.size(); i++) {
-       ui->comboBox_drivePath->addItem(drvs.at(i).absolutePath());
+        if (drvs.at(i).absolutePath() == "C:/"
+                || drvs.at(i).absolutePath() == "D:/"
+                ||drvs.at(i).absolutePath() == "E:/"
+                ) {
+            continue;
+
+        }
+        ui->comboBox_drivePath->addItem(drvs.at(i).absolutePath());
     }
 }
 

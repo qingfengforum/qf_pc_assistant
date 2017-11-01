@@ -48,7 +48,6 @@ private slots:
     void on_pushButton_copy_clicked();
     void on_pushButton_refreshDrives_clicked();
     void on_pushButton_startCommTool_clicked();
-    void on_pushButton_setFolder_clicked();
     void on_pushButton_config_clicked();
 
     void on_pushButton_configSave_clicked();
