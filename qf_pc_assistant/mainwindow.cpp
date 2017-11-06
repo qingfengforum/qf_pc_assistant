@@ -12,11 +12,11 @@
 
 PRJ_INFO_s MainWindow::prj_info_table[] = {
     // prj_idx, prj_name, prj_source_code_path, prj_bin_file_path, prj_bin_file_name,prj_tool_path
-    {PRJ_VF11,  "VF11", "Z:\\fwd_svn\\vf11\\debug\\rtos", "Z:\\fwd_svn\\vf11\\debug\\rtos\\output\\out\\fwprog\\devfw\\", "VF_11.bin"
+    {PRJ_VF11,  "VF11", "Z:\\fwd_svn\\vf11\\debug\\rtos", "Z:\\fwd_svn\\vf11\\debug\\rtos\\output\\out\\fwprog\\devfw\\VF_11.bin", "VF_11.bin"
                      , "E:\\Project\\VF11\\03_tools\\my_uart_tool\\vf11\\v0.0\\vf_11_0.0.exe"},
-    {PRJ_FE6,   "FE6",  "Z:\\fwd_svn\\fe6\\debug\\rtos", "Z:\\fwd_svn\\fe6\\debug\\rtos\\output\\out\\fwprog\\devfw", "FE_6.bin"
+    {PRJ_FE6,   "FE6",  "Z:\\fwd_svn\\fe6\\debug\\rtos", "Z:\\fwd_svn\\fe6\\debug\\rtos\\output\\out\\fwprog\\devfw\\FE_6.bin", "FE_6.bin"
                      , "E:\\Project\\VF11\\03_tools\\my_uart_tool\\vf11\\v0.0\\vf_11_0.0.exe"},
-    {PRJ_S331, "S331", "Z:\\fwd_svn\\s331\\debug\\rtos", "Z:\\fwd_svn\\s331\\debug\\rtos\\output\\out\\fwprog\\devfw\\", "S331.bin"
+    {PRJ_S331, "S331", "Z:\\fwd_svn\\s331\\debug\\rtos", "Z:\\fwd_svn\\s331\\debug\\rtos\\output\\out\\fwprog\\devfw\\S331.bin", "S331.bin"
                     , "E:\\Project\\s331\\03_tools\\my_comm_tool\\s331_v0.0\\S331.exe"},
     {PRJ_END, "prj_name", "prj_src_path", "prj_bin_file_path", "prj_bin_file_name", "prj_tool_path"},
 };
@@ -65,8 +65,10 @@ void MainWindow::on_pushButton_copy_clicked()
 
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
         if  (ui->comboBox_prjName->currentText() == prj_map.value(i.key()).prj_name) {
-            QString srcDir = prj_map.value(i.key()).bin_file_path + prj_map.value(i.key()).bin_file_name;
-            QString destDir = ui->comboBox_drivePath->currentText() + prj_map.value(i.key()).bin_file_name;
+            QString srcDir = prj_map.value(i.key()).bin_file_path;
+            QFileInfo binfileInfo(prj_map.value(i.key()).bin_file_path);
+            QString binFilename = binfileInfo.fileName();
+            QString destDir = ui->comboBox_drivePath->currentText() + binFilename;
             if (copyFile(srcDir, destDir, true)) {
                 message.setText("copy file [" + ui->comboBox_prjName->currentText()+"] success");
             } else {
@@ -245,6 +247,8 @@ bool MainWindow::copyFile(QString srcFilenName, QString destFileName, bool overR
 void MainWindow::refreshDrives()
 {
     QFileInfoList drvs = QDir::drives();
+
+    ui->comboBox_drivePath->clear();
 
     for (int i=0; i<drvs.size(); i++) {
         if (drvs.at(i).absolutePath() == "C:/"
