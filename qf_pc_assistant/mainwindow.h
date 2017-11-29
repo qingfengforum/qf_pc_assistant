@@ -71,7 +71,7 @@ private:
     void initMenuContext();
 
     /** save and load */
-    void loadConfig();
+    int loadConfig();
     void saveConfig();
 
     /** refresh */

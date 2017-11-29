@@ -203,16 +203,21 @@ void MainWindow::action_addPrj()
  * ****************************************************/
 void MainWindow::initComboBox()
 {
-    /** project comboBox */
-    for (int i=0; prj_info_table[i].prj_idx != PRJ_END; i++) {
-        PRJ_INFO_s prj_info = {};
-        prj_info.prj_path = prj_info_table[i].prj_path;
-        prj_map.insert(prj_info_table[i].prj_idx, prj_info_table[i]);
+    if (loadConfig() < 0) {
+#if 0
+        /** project comboBox */
+        for (int i=0; prj_info_table[i].prj_idx != PRJ_END; i++) {
+            PRJ_INFO_s prj_info = {};
+            prj_info.prj_path = prj_info_table[i].prj_path;
+            prj_map.insert(prj_info_table[i].prj_idx, prj_info_table[i]);
+        }
+
+        for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+            ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name, prj_map.value(i.key()).prj_idx);
+        }
+#endif
     }
 
-    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
-        ui->comboBox_prjName->addItem(prj_map.value(i.key()).prj_name, prj_map.value(i.key()).prj_idx);
-    }
 
     /** drives list */
     refreshDrives();
@@ -269,7 +274,7 @@ void MainWindow::initMenuContext()
     connect(ui->actionAdd_project, &QAction::triggered, this, &MainWindow::action_addPrj);
 }
 
-void MainWindow::loadConfig()
+int MainWindow::loadConfig()
 {
     /* open file */
     QFile configSettings("config.txt");
@@ -277,7 +282,7 @@ void MainWindow::loadConfig()
 
     if (!configSettings.open(QFile::ReadOnly)) {
         qDebug() << "open file error";
-        return;
+        return -1;
     }
 
     qDebug() << fileIn.readLine();
@@ -316,6 +321,11 @@ void MainWindow::loadConfig()
     }
 
     configSettings.close();
+
+    /** refresh combox */
+    refreshComboBox_prjName();
+
+    return 0;
 }
 
 void MainWindow::saveConfig()
