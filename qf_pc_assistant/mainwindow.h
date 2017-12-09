@@ -64,6 +64,8 @@ private slots:
     /** actions */
     void action_addPrj();
 
+    void on_pushButton_ejectUsb_clicked();
+
 private:
     void initComboBox();
     bool copyFile(QString srcFilenName, QString destFileName, bool overRideFile);

@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[18];
-    char stringdata0[369];
+    char stringdata0[351];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,31 +35,31 @@ QT_MOC_LITERAL(2, 44, 0), // ""
 QT_MOC_LITERAL(3, 45, 26), // "on_pushButton_copy_clicked"
 QT_MOC_LITERAL(4, 72, 35), // "on_pushButton_refreshDrives_c..."
 QT_MOC_LITERAL(5, 108, 35), // "on_pushButton_startCommTool_c..."
-QT_MOC_LITERAL(6, 144, 31), // "on_pushButton_setFolder_clicked"
-QT_MOC_LITERAL(7, 176, 28), // "on_pushButton_config_clicked"
-QT_MOC_LITERAL(8, 205, 32), // "on_pushButton_configSave_clicked"
-QT_MOC_LITERAL(9, 238, 32), // "on_pushButton_configLoad_clicked"
-QT_MOC_LITERAL(10, 271, 10), // "leaveEvent"
-QT_MOC_LITERAL(11, 282, 7), // "QEvent*"
-QT_MOC_LITERAL(12, 290, 5), // "event"
-QT_MOC_LITERAL(13, 296, 10), // "enterEvent"
-QT_MOC_LITERAL(14, 307, 17), // "mouseReleaseEvent"
-QT_MOC_LITERAL(15, 325, 12), // "QMouseEvent*"
-QT_MOC_LITERAL(16, 338, 14), // "mouseMoveEvent"
-QT_MOC_LITERAL(17, 353, 15) // "mousePressEvent"
+QT_MOC_LITERAL(6, 144, 28), // "on_pushButton_config_clicked"
+QT_MOC_LITERAL(7, 173, 32), // "on_pushButton_configSave_clicked"
+QT_MOC_LITERAL(8, 206, 32), // "on_pushButton_configLoad_clicked"
+QT_MOC_LITERAL(9, 239, 10), // "leaveEvent"
+QT_MOC_LITERAL(10, 250, 7), // "QEvent*"
+QT_MOC_LITERAL(11, 258, 5), // "event"
+QT_MOC_LITERAL(12, 264, 10), // "enterEvent"
+QT_MOC_LITERAL(13, 275, 17), // "mouseReleaseEvent"
+QT_MOC_LITERAL(14, 293, 12), // "QMouseEvent*"
+QT_MOC_LITERAL(15, 306, 14), // "mouseMoveEvent"
+QT_MOC_LITERAL(16, 321, 15), // "mousePressEvent"
+QT_MOC_LITERAL(17, 337, 13) // "action_addPrj"
 
     },
     "MainWindow\0on_pushButton_openFolder_clicked\0"
     "\0on_pushButton_copy_clicked\0"
     "on_pushButton_refreshDrives_clicked\0"
     "on_pushButton_startCommTool_clicked\0"
-    "on_pushButton_setFolder_clicked\0"
     "on_pushButton_config_clicked\0"
     "on_pushButton_configSave_clicked\0"
     "on_pushButton_configLoad_clicked\0"
     "leaveEvent\0QEvent*\0event\0enterEvent\0"
     "mouseReleaseEvent\0QMouseEvent*\0"
-    "mouseMoveEvent\0mousePressEvent"
+    "mouseMoveEvent\0mousePressEvent\0"
+    "action_addPrj"
 };
 #undef QT_MOC_LITERAL
 
@@ -84,12 +84,12 @@ static const uint qt_meta_data_MainWindow[] = {
        6,    0,   83,    2, 0x08 /* Private */,
        7,    0,   84,    2, 0x08 /* Private */,
        8,    0,   85,    2, 0x08 /* Private */,
-       9,    0,   86,    2, 0x08 /* Private */,
-      10,    1,   87,    2, 0x08 /* Private */,
-      13,    1,   90,    2, 0x08 /* Private */,
-      14,    1,   93,    2, 0x08 /* Private */,
-      16,    1,   96,    2, 0x08 /* Private */,
-      17,    1,   99,    2, 0x08 /* Private */,
+       9,    1,   86,    2, 0x08 /* Private */,
+      12,    1,   89,    2, 0x08 /* Private */,
+      13,    1,   92,    2, 0x08 /* Private */,
+      15,    1,   95,    2, 0x08 /* Private */,
+      16,    1,   98,    2, 0x08 /* Private */,
+      17,    0,  101,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -99,12 +99,12 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 10,   11,
+    QMetaType::Void, 0x80000000 | 10,   11,
+    QMetaType::Void, 0x80000000 | 14,   11,
+    QMetaType::Void, 0x80000000 | 14,   11,
+    QMetaType::Void, 0x80000000 | 14,   11,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 11,   12,
-    QMetaType::Void, 0x80000000 | 11,   12,
-    QMetaType::Void, 0x80000000 | 15,   12,
-    QMetaType::Void, 0x80000000 | 15,   12,
-    QMetaType::Void, 0x80000000 | 15,   12,
 
        0        // eod
 };
@@ -119,15 +119,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_pushButton_copy_clicked(); break;
         case 2: _t->on_pushButton_refreshDrives_clicked(); break;
         case 3: _t->on_pushButton_startCommTool_clicked(); break;
-        case 4: _t->on_pushButton_setFolder_clicked(); break;
-        case 5: _t->on_pushButton_config_clicked(); break;
-        case 6: _t->on_pushButton_configSave_clicked(); break;
-        case 7: _t->on_pushButton_configLoad_clicked(); break;
-        case 8: _t->leaveEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
-        case 9: _t->enterEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
-        case 10: _t->mouseReleaseEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        case 11: _t->mouseMoveEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
-        case 12: _t->mousePressEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 4: _t->on_pushButton_config_clicked(); break;
+        case 5: _t->on_pushButton_configSave_clicked(); break;
+        case 6: _t->on_pushButton_configLoad_clicked(); break;
+        case 7: _t->leaveEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
+        case 8: _t->enterEvent((*reinterpret_cast< QEvent*(*)>(_a[1]))); break;
+        case 9: _t->mouseReleaseEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 10: _t->mouseMoveEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 11: _t->mousePressEvent((*reinterpret_cast< QMouseEvent*(*)>(_a[1]))); break;
+        case 12: _t->action_addPrj(); break;
         default: ;
         }
     }

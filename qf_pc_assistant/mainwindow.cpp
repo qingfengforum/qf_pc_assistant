@@ -9,6 +9,8 @@
 #include <QDesktopWidget>
 #include <QFileDialog>
 #include <QMouseEvent>
+#include <windows.h>
+#include <stdio.h>
 
 PRJ_INFO_s MainWindow::prj_info_table[] = {
     // prj_idx, prj_name, prj_source_code_path, prj_bin_file_path, prj_bin_file_name,prj_tool_path
@@ -196,6 +198,51 @@ void MainWindow::action_addPrj()
 {
     Dialog_menu_addProject* add_project = new Dialog_menu_addProject(this);
     add_project->show();
+}
+
+void MainWindow::on_pushButton_ejectUsb_clicked()
+{
+    char devicepath[7];
+    char format[] = "\\\\.\\?:";
+    strcpy_s(devicepath, format);
+    devicepath[4] = 'f';
+    QString errmsg = "";
+
+    DWORD dwRet = 0;
+    wchar_t wtext[7];
+    size_t textlen = 7;
+    mbstowcs_s(&textlen, wtext, strlen(devicepath)+1, devicepath, _TRUNCATE);
+    HANDLE hVol = CreateFile(wtext, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+    if (hVol == INVALID_HANDLE_VALUE)
+    {
+       // FormatErrorMsg("CreateFile: ", errmsg);
+        return; //false;
+    }
+
+    if(!DeviceIoControl(hVol, FSCTL_LOCK_VOLUME, 0, 0, 0, 0, &dwRet, 0))
+    {
+       // FormatErrorMsg("Lock Volume: ", errmsg);
+        return; //false;
+    }
+
+    if(!DeviceIoControl(hVol, FSCTL_DISMOUNT_VOLUME, 0, 0, 0, 0, &dwRet, 0))
+    {
+        //FormatErrorMsg("Dismount Volume: ", errmsg);
+        return;// false;
+    }
+
+    if (!DeviceIoControl(hVol, IOCTL_STORAGE_EJECT_MEDIA, 0, 0, 0, 0, &dwRet, 0))
+    {
+        //FormatErrorMsg("Eject Media: ", errmsg);
+        qDebug() << "eject failed";
+        //return;// false;
+    } else {
+        qDebug() << "eject OK";
+    }
+
+    CloseHandle(hVol);
+
+    return;
 }
 
 /******************************************************
@@ -410,5 +457,8 @@ void MainWindow::addPrjInfo(PRJ_INFO_s prjInfo)
 
 
 }
+
+
+
 
 

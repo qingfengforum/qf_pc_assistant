@@ -42,6 +42,7 @@ public:
     QPushButton *pushButton_copy;
     QComboBox *comboBox_drivePath;
     QPushButton *pushButton_refreshDrives;
+    QPushButton *pushButton_ejectUsb;
     QGroupBox *groupBox_4;
     QPushButton *pushButton_startCommTool;
     QMenuBar *menuBar;
@@ -53,7 +54,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(231, 459);
+        MainWindow->resize(272, 459);
         actionAdd_project = new QAction(MainWindow);
         actionAdd_project->setObjectName(QStringLiteral("actionAdd_project"));
         centralWidget = new QWidget(MainWindow);
@@ -81,7 +82,7 @@ public:
         pushButton_openFolder->setGeometry(QRect(20, 20, 121, 31));
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 200, 201, 91));
+        groupBox_3->setGeometry(QRect(10, 200, 221, 91));
         pushButton_copy = new QPushButton(groupBox_3);
         pushButton_copy->setObjectName(QStringLiteral("pushButton_copy"));
         pushButton_copy->setGeometry(QRect(10, 50, 141, 31));
@@ -91,6 +92,9 @@ public:
         pushButton_refreshDrives = new QPushButton(groupBox_3);
         pushButton_refreshDrives->setObjectName(QStringLiteral("pushButton_refreshDrives"));
         pushButton_refreshDrives->setGeometry(QRect(90, 20, 61, 21));
+        pushButton_ejectUsb = new QPushButton(groupBox_3);
+        pushButton_ejectUsb->setObjectName(QStringLiteral("pushButton_ejectUsb"));
+        pushButton_ejectUsb->setGeometry(QRect(160, 20, 61, 21));
         groupBox_4 = new QGroupBox(centralWidget);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         groupBox_4->setGeometry(QRect(10, 320, 201, 80));
@@ -100,7 +104,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 231, 23));
+        menuBar->setGeometry(QRect(0, 0, 272, 23));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
@@ -132,6 +136,7 @@ public:
         groupBox_3->setTitle(QApplication::translate("MainWindow", "copy fw file", 0));
         pushButton_copy->setText(QApplication::translate("MainWindow", "Copy", 0));
         pushButton_refreshDrives->setText(QApplication::translate("MainWindow", "refresh", 0));
+        pushButton_ejectUsb->setText(QApplication::translate("MainWindow", "eject", 0));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "comm tool", 0));
         pushButton_startCommTool->setText(QApplication::translate("MainWindow", "start comm tool", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
