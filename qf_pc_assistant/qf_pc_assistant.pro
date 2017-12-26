@@ -25,3 +25,5 @@ FORMS    += mainwindow.ui \
     dialog_config.ui \
     dialog_menu_addproject.ui
 LIBS += -lUser32
+
+RC_ICONS = app.ico #add app icon
