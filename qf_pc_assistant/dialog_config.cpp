@@ -55,6 +55,19 @@ void Dialog_config::initDialog()
 /***************************************************
  * private slots
  * *************************************************/
+/*
+ * delete project
+ */
+void Dialog_config::on_pushButton_config_deletePrj_clicked()
+{
+    int idx = ui->comboBox_prj->currentData().toInt();
+    dialogConfig_parent->delPrjInfoByIdx(idx);
+    initDialogConfig();
+}
+
+/*
+ * set source folder
+ */
 void Dialog_config::on_pushButton_setSourcefolder_clicked()
 {
     //QMap<int, PRJ_INFO_s> prj_map = dialogConfig_parent->getPrjInfoMap();
@@ -127,3 +140,4 @@ void Dialog_config::slot_comboBox_prj_idxChanged(int cur_idx)
     ui->lineEdit_binFilePaht->setText(prj_binFilePath);
     ui->lineEdit_toolFilePath->setText(prj_toolFilePaht);
 }
+

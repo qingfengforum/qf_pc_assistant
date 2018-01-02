@@ -48,7 +48,6 @@ private slots:
     void on_pushButton_copy_clicked();
     void on_pushButton_refreshDrives_clicked();
     void on_pushButton_startCommTool_clicked();
-    void on_pushButton_config_clicked();
 
     void on_pushButton_configSave_clicked();
     void on_pushButton_configLoad_clicked();
@@ -63,6 +62,7 @@ private slots:
 
     /** actions */
     void action_addPrj();
+    void action_configPrj();
 
     void on_pushButton_ejectUsb_clicked();
 
@@ -83,6 +83,7 @@ public:
     QMap<int, PRJ_INFO_s> getPrjInfoMap();
     void setPrjInfo(PRJ_INFO_s prjInfo);
     void addPrjInfo(PRJ_INFO_s prjInfo);
+    void delPrjInfoByIdx(int idx);
 public:
     static PRJ_INFO_s prj_info_table[];
     QMap<int, PRJ_INFO_s> prj_map;

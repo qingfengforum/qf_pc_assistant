@@ -100,11 +100,6 @@ void MainWindow::on_pushButton_startCommTool_clicked()
     }
 }
 
-void MainWindow::on_pushButton_config_clicked()
-{
-    dialogConfig->initDialogConfig();
-    dialogConfig->show();
-}
 
 void MainWindow::on_pushButton_configSave_clicked()
 {
@@ -199,6 +194,13 @@ void MainWindow::action_addPrj()
     Dialog_menu_addProject* add_project = new Dialog_menu_addProject(this);
     add_project->show();
 }
+
+void MainWindow::action_configPrj()
+{
+    dialogConfig->initDialogConfig();
+    dialogConfig->show();
+}
+
 
 void MainWindow::on_pushButton_ejectUsb_clicked()
 {
@@ -316,9 +318,13 @@ void MainWindow::refreshDrives()
 
 void MainWindow::initMenuContext()
 {
-    /** 信息栏提示 */
-    ui->actionAdd_project->setStatusTip("add project");
+    /** add project */
+    ui->actionAdd_project->setStatusTip("add project");// information that shows in infomation bar.
     connect(ui->actionAdd_project, &QAction::triggered, this, &MainWindow::action_addPrj);
+
+    /** config project  */
+    ui->actionAdd_project->setStatusTip("config project");
+    connect(ui->actionConfig_project, &QAction::triggered, this, &MainWindow::action_configPrj);
 }
 
 int MainWindow::loadConfig()
@@ -454,10 +460,13 @@ void MainWindow::addPrjInfo(PRJ_INFO_s prjInfo)
     qDebug() << "size : " << prj_map.size() << "indx: " << prjInfo.prj_idx;
     prj_map.insert(prjInfo.prj_idx, prjInfo);
     refreshComboBox_prjName();
-
-
 }
 
+void MainWindow::delPrjInfoByIdx(int idx)
+{
+   prj_map.remove(idx);
+   refreshComboBox_prjName();
+}
 
 
 

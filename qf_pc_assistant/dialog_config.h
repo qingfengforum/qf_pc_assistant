@@ -20,6 +20,7 @@ public:
     ~Dialog_config();
 
 private slots:
+    void on_pushButton_config_deletePrj_clicked();
     void on_pushButton_setSourcefolder_clicked();
     void on_pushButton_setBinFilePath_clicked();
     void on_pushButton_setToolPath_clicked();

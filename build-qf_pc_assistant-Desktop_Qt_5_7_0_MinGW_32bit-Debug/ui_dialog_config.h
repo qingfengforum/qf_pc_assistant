@@ -39,6 +39,7 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_toolFilePath;
     QPushButton *pushButton_setToolPath;
+    QPushButton *pushButton_config_deletePrj;
 
     void setupUi(QDialog *Dialog_config)
     {
@@ -47,7 +48,7 @@ public:
         Dialog_config->resize(555, 514);
         comboBox_prj = new QComboBox(Dialog_config);
         comboBox_prj->setObjectName(QStringLiteral("comboBox_prj"));
-        comboBox_prj->setGeometry(QRect(10, 20, 101, 22));
+        comboBox_prj->setGeometry(QRect(10, 20, 411, 22));
         gridLayoutWidget = new QWidget(Dialog_config);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(10, 70, 531, 83));
@@ -99,6 +100,9 @@ public:
 
         gridLayout->addWidget(pushButton_setToolPath, 2, 2, 1, 1);
 
+        pushButton_config_deletePrj = new QPushButton(Dialog_config);
+        pushButton_config_deletePrj->setObjectName(QStringLiteral("pushButton_config_deletePrj"));
+        pushButton_config_deletePrj->setGeometry(QRect(450, 20, 91, 23));
 
         retranslateUi(Dialog_config);
 
@@ -114,6 +118,7 @@ public:
         pushButton_setBinFilePath->setText(QApplication::translate("Dialog_config", "set binFilePath", 0));
         label_3->setText(QApplication::translate("Dialog_config", "tool path", 0));
         pushButton_setToolPath->setText(QApplication::translate("Dialog_config", "set toolPath", 0));
+        pushButton_config_deletePrj->setText(QApplication::translate("Dialog_config", "delete", 0));
     } // retranslateUi
 
 };
