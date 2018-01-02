@@ -16,12 +16,14 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QToolBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -43,8 +45,12 @@ public:
     QComboBox *comboBox_drivePath;
     QPushButton *pushButton_refreshDrives;
     QPushButton *pushButton_ejectUsb;
+    QPushButton *pushButton_ejectUsb_2;
     QGroupBox *groupBox_4;
     QPushButton *pushButton_startCommTool;
+    QToolBox *toolBox;
+    QWidget *page;
+    QWidget *page_2;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QToolBar *mainToolBar;
@@ -54,57 +60,71 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(272, 459);
+        MainWindow->resize(343, 621);
         actionAdd_project = new QAction(MainWindow);
         actionAdd_project->setObjectName(QStringLiteral("actionAdd_project"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 201, 81));
+        groupBox->setGeometry(QRect(10, 10, 311, 81));
         comboBox_prjName = new QComboBox(groupBox);
         comboBox_prjName->setObjectName(QStringLiteral("comboBox_prjName"));
-        comboBox_prjName->setGeometry(QRect(20, 20, 91, 22));
+        comboBox_prjName->setGeometry(QRect(10, 20, 291, 22));
         pushButton_config = new QPushButton(groupBox);
         pushButton_config->setObjectName(QStringLiteral("pushButton_config"));
-        pushButton_config->setGeometry(QRect(120, 20, 75, 23));
+        pushButton_config->setGeometry(QRect(230, 50, 75, 23));
         pushButton_configLoad = new QPushButton(groupBox);
         pushButton_configLoad->setObjectName(QStringLiteral("pushButton_configLoad"));
-        pushButton_configLoad->setGeometry(QRect(120, 50, 75, 23));
+        pushButton_configLoad->setGeometry(QRect(100, 50, 75, 23));
         pushButton_configSave = new QPushButton(groupBox);
         pushButton_configSave->setObjectName(QStringLiteral("pushButton_configSave"));
-        pushButton_configSave->setGeometry(QRect(20, 50, 75, 23));
+        pushButton_configSave->setGeometry(QRect(10, 50, 75, 23));
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 100, 201, 80));
+        groupBox_2->setGeometry(QRect(10, 100, 311, 71));
         pushButton_openFolder = new QPushButton(groupBox_2);
         pushButton_openFolder->setObjectName(QStringLiteral("pushButton_openFolder"));
-        pushButton_openFolder->setGeometry(QRect(20, 20, 121, 31));
+        pushButton_openFolder->setGeometry(QRect(20, 20, 281, 31));
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 200, 221, 91));
+        groupBox_3->setGeometry(QRect(10, 200, 311, 91));
         pushButton_copy = new QPushButton(groupBox_3);
         pushButton_copy->setObjectName(QStringLiteral("pushButton_copy"));
         pushButton_copy->setGeometry(QRect(10, 50, 141, 31));
         comboBox_drivePath = new QComboBox(groupBox_3);
         comboBox_drivePath->setObjectName(QStringLiteral("comboBox_drivePath"));
-        comboBox_drivePath->setGeometry(QRect(10, 20, 71, 21));
+        comboBox_drivePath->setGeometry(QRect(10, 20, 141, 21));
         pushButton_refreshDrives = new QPushButton(groupBox_3);
         pushButton_refreshDrives->setObjectName(QStringLiteral("pushButton_refreshDrives"));
-        pushButton_refreshDrives->setGeometry(QRect(90, 20, 61, 21));
+        pushButton_refreshDrives->setGeometry(QRect(160, 20, 61, 21));
         pushButton_ejectUsb = new QPushButton(groupBox_3);
         pushButton_ejectUsb->setObjectName(QStringLiteral("pushButton_ejectUsb"));
-        pushButton_ejectUsb->setGeometry(QRect(160, 20, 61, 21));
+        pushButton_ejectUsb->setGeometry(QRect(240, 20, 61, 21));
+        pushButton_ejectUsb_2 = new QPushButton(groupBox_3);
+        pushButton_ejectUsb_2->setObjectName(QStringLiteral("pushButton_ejectUsb_2"));
+        pushButton_ejectUsb_2->setGeometry(QRect(160, 50, 61, 31));
         groupBox_4 = new QGroupBox(centralWidget);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-        groupBox_4->setGeometry(QRect(10, 320, 201, 80));
+        groupBox_4->setGeometry(QRect(10, 320, 311, 80));
         pushButton_startCommTool = new QPushButton(groupBox_4);
         pushButton_startCommTool->setObjectName(QStringLiteral("pushButton_startCommTool"));
-        pushButton_startCommTool->setGeometry(QRect(20, 30, 111, 31));
+        pushButton_startCommTool->setGeometry(QRect(20, 30, 281, 31));
+        toolBox = new QToolBox(centralWidget);
+        toolBox->setObjectName(QStringLiteral("toolBox"));
+        toolBox->setGeometry(QRect(10, 420, 311, 121));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        page->setGeometry(QRect(0, 0, 311, 69));
+        toolBox->addItem(page, QStringLiteral("Use Most folders"));
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        page_2->setGeometry(QRect(0, 0, 311, 69));
+        toolBox->addItem(page_2, QStringLiteral("Page 2"));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 272, 23));
+        menuBar->setGeometry(QRect(0, 0, 343, 23));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
@@ -119,6 +139,9 @@ public:
         menuFile->addAction(actionAdd_project);
 
         retranslateUi(MainWindow);
+
+        toolBox->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -136,9 +159,12 @@ public:
         groupBox_3->setTitle(QApplication::translate("MainWindow", "copy fw file", 0));
         pushButton_copy->setText(QApplication::translate("MainWindow", "Copy", 0));
         pushButton_refreshDrives->setText(QApplication::translate("MainWindow", "refresh", 0));
-        pushButton_ejectUsb->setText(QApplication::translate("MainWindow", "eject", 0));
+        pushButton_ejectUsb->setText(QApplication::translate("MainWindow", "open", 0));
+        pushButton_ejectUsb_2->setText(QApplication::translate("MainWindow", "open", 0));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "comm tool", 0));
         pushButton_startCommTool->setText(QApplication::translate("MainWindow", "start comm tool", 0));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Use Most folders", 0));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Page 2", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 
