@@ -15,7 +15,9 @@ enum {
 typedef struct _PRJ_INFO_s_{
     int prj_idx;
     QString prj_name;
-    QString prj_path; /* project source code path */
+    QString prj_path;           /* project manage path */
+    QString prj_server_path;    /* project server path */
+    QString prj_src_code_path;
     QString bin_file_path;
     QString bin_file_name;
     QString prj_tool_path;
@@ -67,7 +69,13 @@ private slots:
     /** buttons */
     void on_pushButton_openBinFileFolder_clicked();
     void on_pushButton_openTargetForder_clicked();
+    void on_pushButton_openServerPrjFolder_clicked();
+    void on_pushButton_openLocalPrjFolder_clicked();
     void on_pushButton_ejectUsb_clicked();
+
+
+
+
 
 private:
     void initComboBox();

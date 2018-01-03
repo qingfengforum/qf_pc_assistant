@@ -19,12 +19,18 @@ public:
     ~Dialog_menu_addProject();
 
 private slots:
+    /** set file path */
     void on_pushButton_setSrcCodePath_clicked();
-
     void on_pushButton_setBinFIlePath_clicked();
-
     void on_pushButton_setToolFilePath_clicked();
+    void on_pushButton_setPrjFilePath_clicked();
+    void on_pushButton_setPrjServerPath_clicked();
     void slot_btnBox_ok_clicked();
+
+
+
+
+
 
 private:
     Ui::Dialog_menu_addProject *ui;

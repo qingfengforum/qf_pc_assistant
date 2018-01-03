@@ -37,6 +37,8 @@ public:
     QGroupBox *groupBox_2;
     QPushButton *pushButton_openFolder;
     QPushButton *pushButton_openBinFileFolder;
+    QPushButton *pushButton_openServerPrjFolder;
+    QPushButton *pushButton_openLocalPrjFolder;
     QGroupBox *groupBox_3;
     QPushButton *pushButton_copy;
     QComboBox *comboBox_drivePath;
@@ -71,16 +73,22 @@ public:
         comboBox_prjName->setGeometry(QRect(10, 20, 291, 22));
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 120, 311, 81));
+        groupBox_2->setGeometry(QRect(10, 120, 311, 101));
         pushButton_openFolder = new QPushButton(groupBox_2);
         pushButton_openFolder->setObjectName(QStringLiteral("pushButton_openFolder"));
         pushButton_openFolder->setGeometry(QRect(10, 20, 151, 31));
         pushButton_openBinFileFolder = new QPushButton(groupBox_2);
         pushButton_openBinFileFolder->setObjectName(QStringLiteral("pushButton_openBinFileFolder"));
         pushButton_openBinFileFolder->setGeometry(QRect(180, 20, 121, 31));
+        pushButton_openServerPrjFolder = new QPushButton(groupBox_2);
+        pushButton_openServerPrjFolder->setObjectName(QStringLiteral("pushButton_openServerPrjFolder"));
+        pushButton_openServerPrjFolder->setGeometry(QRect(10, 60, 151, 31));
+        pushButton_openLocalPrjFolder = new QPushButton(groupBox_2);
+        pushButton_openLocalPrjFolder->setObjectName(QStringLiteral("pushButton_openLocalPrjFolder"));
+        pushButton_openLocalPrjFolder->setGeometry(QRect(180, 60, 121, 31));
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 220, 311, 91));
+        groupBox_3->setGeometry(QRect(10, 250, 311, 91));
         pushButton_copy = new QPushButton(groupBox_3);
         pushButton_copy->setObjectName(QStringLiteral("pushButton_copy"));
         pushButton_copy->setGeometry(QRect(10, 50, 291, 31));
@@ -145,7 +153,21 @@ public:
 #ifndef QT_NO_WHATSTHIS
         pushButton_openBinFileFolder->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder.</p></body></html>", 0));
 #endif // QT_NO_WHATSTHIS
-        pushButton_openBinFileFolder->setText(QApplication::translate("MainWindow", "open bin file", 0));
+        pushButton_openBinFileFolder->setText(QApplication::translate("MainWindow", "open bin folder", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_openServerPrjFolder->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        pushButton_openServerPrjFolder->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder.</p></body></html>", 0));
+#endif // QT_NO_WHATSTHIS
+        pushButton_openServerPrjFolder->setText(QApplication::translate("MainWindow", "open server prj", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_openLocalPrjFolder->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        pushButton_openLocalPrjFolder->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder.</p></body></html>", 0));
+#endif // QT_NO_WHATSTHIS
+        pushButton_openLocalPrjFolder->setText(QApplication::translate("MainWindow", "open local prj", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "copy fw file", 0));
         pushButton_copy->setText(QApplication::translate("MainWindow", "Copy", 0));
         pushButton_refreshDrives->setText(QApplication::translate("MainWindow", "refresh", 0));

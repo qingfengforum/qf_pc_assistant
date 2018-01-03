@@ -36,12 +36,14 @@ public:
     QComboBox *comboBox_prjName;
     QGroupBox *groupBox_2;
     QPushButton *pushButton_openFolder;
+    QPushButton *pushButton_openBinFileFolder;
+    QPushButton *pushButton_openServerPrjFolder;
+    QPushButton *pushButton_openLocalPrjFolder;
     QGroupBox *groupBox_3;
     QPushButton *pushButton_copy;
     QComboBox *comboBox_drivePath;
     QPushButton *pushButton_refreshDrives;
-    QPushButton *pushButton_ejectUsb;
-    QPushButton *pushButton_ejectUsb_2;
+    QPushButton *pushButton_openTargetForder;
     QGroupBox *groupBox_4;
     QPushButton *pushButton_startCommTool;
     QGroupBox *groupBox_5;
@@ -71,28 +73,34 @@ public:
         comboBox_prjName->setGeometry(QRect(10, 20, 291, 22));
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(10, 120, 311, 71));
+        groupBox_2->setGeometry(QRect(10, 120, 311, 101));
         pushButton_openFolder = new QPushButton(groupBox_2);
         pushButton_openFolder->setObjectName(QStringLiteral("pushButton_openFolder"));
-        pushButton_openFolder->setGeometry(QRect(20, 20, 281, 31));
+        pushButton_openFolder->setGeometry(QRect(10, 20, 151, 31));
+        pushButton_openBinFileFolder = new QPushButton(groupBox_2);
+        pushButton_openBinFileFolder->setObjectName(QStringLiteral("pushButton_openBinFileFolder"));
+        pushButton_openBinFileFolder->setGeometry(QRect(180, 20, 121, 31));
+        pushButton_openServerPrjFolder = new QPushButton(groupBox_2);
+        pushButton_openServerPrjFolder->setObjectName(QStringLiteral("pushButton_openServerPrjFolder"));
+        pushButton_openServerPrjFolder->setGeometry(QRect(10, 60, 151, 31));
+        pushButton_openLocalPrjFolder = new QPushButton(groupBox_2);
+        pushButton_openLocalPrjFolder->setObjectName(QStringLiteral("pushButton_openLocalPrjFolder"));
+        pushButton_openLocalPrjFolder->setGeometry(QRect(180, 60, 121, 31));
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(10, 240, 311, 91));
+        groupBox_3->setGeometry(QRect(10, 250, 311, 91));
         pushButton_copy = new QPushButton(groupBox_3);
         pushButton_copy->setObjectName(QStringLiteral("pushButton_copy"));
-        pushButton_copy->setGeometry(QRect(10, 50, 141, 31));
+        pushButton_copy->setGeometry(QRect(10, 50, 291, 31));
         comboBox_drivePath = new QComboBox(groupBox_3);
         comboBox_drivePath->setObjectName(QStringLiteral("comboBox_drivePath"));
         comboBox_drivePath->setGeometry(QRect(10, 20, 141, 21));
         pushButton_refreshDrives = new QPushButton(groupBox_3);
         pushButton_refreshDrives->setObjectName(QStringLiteral("pushButton_refreshDrives"));
         pushButton_refreshDrives->setGeometry(QRect(160, 20, 61, 21));
-        pushButton_ejectUsb = new QPushButton(groupBox_3);
-        pushButton_ejectUsb->setObjectName(QStringLiteral("pushButton_ejectUsb"));
-        pushButton_ejectUsb->setGeometry(QRect(240, 20, 61, 21));
-        pushButton_ejectUsb_2 = new QPushButton(groupBox_3);
-        pushButton_ejectUsb_2->setObjectName(QStringLiteral("pushButton_ejectUsb_2"));
-        pushButton_ejectUsb_2->setGeometry(QRect(160, 50, 61, 31));
+        pushButton_openTargetForder = new QPushButton(groupBox_3);
+        pushButton_openTargetForder->setObjectName(QStringLiteral("pushButton_openTargetForder"));
+        pushButton_openTargetForder->setGeometry(QRect(240, 20, 61, 21));
         groupBox_4 = new QGroupBox(centralWidget);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         groupBox_4->setGeometry(QRect(10, 360, 311, 80));
@@ -139,11 +147,34 @@ public:
         groupBox->setTitle(QApplication::translate("MainWindow", "project", 0));
         groupBox_2->setTitle(QApplication::translate("MainWindow", "operations", 0));
         pushButton_openFolder->setText(QApplication::translate("MainWindow", "open source code", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_openBinFileFolder->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        pushButton_openBinFileFolder->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder.</p></body></html>", 0));
+#endif // QT_NO_WHATSTHIS
+        pushButton_openBinFileFolder->setText(QApplication::translate("MainWindow", "open bin folder", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_openServerPrjFolder->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        pushButton_openServerPrjFolder->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder.</p></body></html>", 0));
+#endif // QT_NO_WHATSTHIS
+        pushButton_openServerPrjFolder->setText(QApplication::translate("MainWindow", "open server prj", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_openLocalPrjFolder->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder</p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_WHATSTHIS
+        pushButton_openLocalPrjFolder->setWhatsThis(QApplication::translate("MainWindow", "<html><head/><body><p>open bin file folder.</p></body></html>", 0));
+#endif // QT_NO_WHATSTHIS
+        pushButton_openLocalPrjFolder->setText(QApplication::translate("MainWindow", "open local prj", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "copy fw file", 0));
         pushButton_copy->setText(QApplication::translate("MainWindow", "Copy", 0));
         pushButton_refreshDrives->setText(QApplication::translate("MainWindow", "refresh", 0));
-        pushButton_ejectUsb->setText(QApplication::translate("MainWindow", "open", 0));
-        pushButton_ejectUsb_2->setText(QApplication::translate("MainWindow", "open", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_openTargetForder->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>open the target drive </p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+        pushButton_openTargetForder->setText(QApplication::translate("MainWindow", "open", 0));
         groupBox_4->setTitle(QApplication::translate("MainWindow", "comm tool", 0));
         pushButton_startCommTool->setText(QApplication::translate("MainWindow", "start comm tool", 0));
         groupBox_5->setTitle(QString());

@@ -45,6 +45,30 @@ void Dialog_menu_addProject::on_pushButton_setBinFIlePath_clicked()
     }
 }
 
+
+void Dialog_menu_addProject::on_pushButton_setPrjServerPath_clicked()
+{
+    QString prjServerPath = QFileDialog::getExistingDirectory(this, tr("select file"), "");
+
+    qDebug() << prjServerPath;
+    if (prjServerPath != nullptr) {
+        prjServerPath = prjServerPath.replace("/", "\\");
+        ui->lineEdit_prjServerPath->setText(prjServerPath);
+    }
+}
+
+void Dialog_menu_addProject::on_pushButton_setPrjFilePath_clicked()
+{
+    QString prjFilePath = QFileDialog::getExistingDirectory(this, tr("select file"), "");
+
+    qDebug() << prjFilePath;
+    if (prjFilePath != nullptr) {
+        prjFilePath = prjFilePath.replace("/", "\\");
+        ui->lineEdit_prjFilePath->setText(prjFilePath);
+    }
+}
+
+
 void Dialog_menu_addProject::on_pushButton_setToolFilePath_clicked()
 {
     QString toolFilePath = QFileDialog::getOpenFileName(this, tr("select file"), "", "*.exe");
@@ -60,9 +84,12 @@ void Dialog_menu_addProject::slot_btnBox_ok_clicked()
 {
     PRJ_INFO_s prj_info;
     prj_info.prj_name = ui->lineEdit_prjName->text();
-    prj_info.prj_path = ui->lineEdit_srcCodePath->text();
+    prj_info.prj_path = ui->lineEdit_prjFilePath->text();
+    prj_info.prj_server_path = ui->lineEdit_prjServerPath->text();
+    prj_info.prj_src_code_path = ui->lineEdit_srcCodePath->text();
     prj_info.bin_file_path = ui->lineEdit_binFilePath->text();
     prj_info.prj_tool_path = ui->lineEdit_toolFilePath->text();
 
     dialogMenu_addPrj_parent->addPrjInfo(prj_info);
 }
+

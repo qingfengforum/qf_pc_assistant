@@ -12,16 +12,7 @@
 #include <windows.h>
 #include <stdio.h>
 
-PRJ_INFO_s MainWindow::prj_info_table[] = {
-    // prj_idx, prj_name, prj_source_code_path, prj_bin_file_path, prj_bin_file_name,prj_tool_path
-    {PRJ_VF11,  "VF11", "Z:\\fwd_svn\\vf11\\debug\\rtos", "Z:\\fwd_svn\\vf11\\debug\\rtos\\output\\out\\fwprog\\devfw\\VF_11.bin", "VF_11.bin"
-                     , "E:\\Project\\VF11\\03_tools\\my_uart_tool\\vf11\\v0.0\\vf_11_0.0.exe"},
-    {PRJ_FE6,   "FE6",  "Z:\\fwd_svn\\fe6\\debug\\rtos", "Z:\\fwd_svn\\fe6\\debug\\rtos\\output\\out\\fwprog\\devfw\\FE_6.bin", "FE_6.bin"
-                     , "E:\\Project\\VF11\\03_tools\\my_uart_tool\\vf11\\v0.0\\vf_11_0.0.exe"},
-    {PRJ_S331, "S331", "Z:\\fwd_svn\\s331\\debug\\rtos", "Z:\\fwd_svn\\s331\\debug\\rtos\\output\\out\\fwprog\\devfw\\S331.bin", "S331.bin"
-                    , "E:\\Project\\s331\\03_tools\\my_comm_tool\\s331_v0.0\\S331.exe"},
-    {PRJ_END, "prj_name", "prj_src_path", "prj_bin_file_path", "prj_bin_file_name", "prj_tool_path"},
-};
+//PRJ_INFO_s MainWindow::prj_info_table[] = {0};
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -54,7 +45,7 @@ void MainWindow::on_pushButton_openFolder_clicked()
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
         if  (ui->comboBox_prjName->currentText() == prj_map.value(i.key()).prj_name) {
             qDebug() << "open"  << prj_map.value(i.key()).prj_name;
-            QProcess::startDetached("explorer "+ prj_map.value(i.key()).prj_path);
+            QProcess::startDetached("explorer "+ prj_map.value(i.key()).prj_src_code_path);
             break;
         }
     }
@@ -205,7 +196,8 @@ void MainWindow::on_pushButton_openBinFileFolder_clicked()
 {
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
         if  (ui->comboBox_prjName->currentText() == prj_map.value(i.key()).prj_name) {
-           openFolder(prj_map.value(i.key()).bin_file_path);
+            QFileInfo binfileInfo(prj_map.value(i.key()).bin_file_path);
+            openFolder(binfileInfo.absolutePath());
             break;
         }
     }
@@ -214,6 +206,27 @@ void MainWindow::on_pushButton_openBinFileFolder_clicked()
 void MainWindow::on_pushButton_openTargetForder_clicked()
 {
     openFolder(ui->comboBox_drivePath->currentText());
+}
+
+void MainWindow::on_pushButton_openServerPrjFolder_clicked()
+{
+    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+        if  (ui->comboBox_prjName->currentText() == prj_map.value(i.key()).prj_name) {
+           openFolder(prj_map.value(i.key()).prj_server_path);
+            break;
+        }
+    }
+}
+
+
+void MainWindow::on_pushButton_openLocalPrjFolder_clicked()
+{
+    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+        if  (ui->comboBox_prjName->currentText() == prj_map.value(i.key()).prj_name) {
+           openFolder(prj_map.value(i.key()).prj_path);
+            break;
+        }
+    }
 }
 
 void MainWindow::on_pushButton_ejectUsb_clicked()
@@ -271,7 +284,7 @@ void MainWindow::initComboBox()
         /** project comboBox */
         for (int i=0; prj_info_table[i].prj_idx != PRJ_END; i++) {
             PRJ_INFO_s prj_info = {};
-            prj_info.prj_path = prj_info_table[i].prj_path;
+            prj_info.prj_src_code_path = prj_info_table[i].prj_src_code_path;
             prj_map.insert(prj_info_table[i].prj_idx, prj_info_table[i]);
         }
 
@@ -362,13 +375,17 @@ int MainWindow::loadConfig()
         PRJ_INFO_s prj_info;
         prj_info.prj_idx = prj_key;
         prj_info.prj_name = lineList.at(1);
-        prj_info.prj_path = lineList.at(2);
+        prj_info.prj_src_code_path = lineList.at(2);
         prj_info.bin_file_path = lineList.at(3);
         prj_info.bin_file_name = lineList.at(4);
         prj_info.prj_tool_path = lineList.at(5);
+        if (lineList.size()>7) {
+            prj_info.prj_path = lineList.at(6);
+            prj_info.prj_server_path = lineList.at(7);
+        }
 
-        if (prj_info.prj_path == "-") {
-            prj_info.prj_path = "";
+        if (prj_info.prj_src_code_path == "-") {
+            prj_info.prj_src_code_path = "";
         }
 
         if (prj_info.bin_file_path == "-") {
@@ -381,6 +398,13 @@ int MainWindow::loadConfig()
 
         if (prj_info.prj_tool_path == "-") {
             prj_info.prj_tool_path = "";
+        }
+
+        if (prj_info.prj_server_path == "-") {
+            prj_info.prj_server_path = "";
+        }
+        if (prj_info.prj_path == "-") {
+            prj_info.prj_path = "";
         }
 
         prj_map.insert(prj_key, prj_info);
@@ -408,12 +432,14 @@ void MainWindow::saveConfig()
 
     QTextStream out(&configSettings);
     /* head */
-    out << "prjidx" << "," <<"prj_name" << "," << "prj_path" << "bin_file_path" << "bin_file_name" << "prj_tool_path" <<endl;
+    out << "prjidx" << "," <<"prj_name" << "," << "prj_src_code_path" << "bin_file_path" << "bin_file_name" << "prj_tool_path" <<endl;
 
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
         QString str_prjKey = QString("%1").arg(i.key());
         QString prj_name = prj_map.value(i.key()).prj_name;
         QString prj_path = prj_map.value(i.key()).prj_path;
+        QString prj_Server_path = prj_map.value(i.key()).prj_server_path;
+        QString prj_src_code_path = prj_map.value(i.key()).prj_src_code_path;
         QString bin_file_path = prj_map.value(i.key()).bin_file_path;
         QString bin_file_name = prj_map.value(i.key()).bin_file_name;
         QString prj_tool_path = prj_map.value(i.key()).prj_tool_path;
@@ -423,7 +449,15 @@ void MainWindow::saveConfig()
         }
 
         if (prj_path == nullptr) {
-            prj_path = "-";
+            prj_path == "-";
+        }
+
+        if (prj_Server_path == nullptr) {
+            prj_Server_path == "-";
+        }
+
+        if (prj_src_code_path == nullptr) {
+            prj_src_code_path = "-";
         }
         if (bin_file_path == nullptr) {
             bin_file_path = "-";
@@ -437,10 +471,12 @@ void MainWindow::saveConfig()
 
         out << str_prjKey << ","
             << prj_name << ","
-            << prj_path << ","
+            << prj_src_code_path << ","
             << bin_file_path << ","
             << bin_file_name << ","
             << prj_tool_path << ","
+            << prj_path << ","
+            << prj_Server_path << ","
             << endl;
     }
 
@@ -499,4 +535,7 @@ void MainWindow::delPrjInfoByIdx(int idx)
    prj_map.remove(idx);
    refreshComboBox_prjName();
 }
+
+
+
 

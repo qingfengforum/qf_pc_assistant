@@ -39,7 +39,7 @@ void Dialog_config::initDialog()
         ui->comboBox_prj->addItem(prj_map.value(i.key()).prj_name, prj_map.value(i.key()).prj_idx);
     }
 
-    QString prj_src_path = prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_path;
+    QString prj_src_path = prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_src_code_path;
     QString prj_binFilePath = prj_map.value(ui->comboBox_prj->currentData().toInt()).bin_file_path;
     QString prj_toolFilePaht = prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_tool_path;
     //qDebug() << ui->comboBox_prj->currentData().toInt();
@@ -75,7 +75,7 @@ void Dialog_config::on_pushButton_setSourcefolder_clicked()
 
     prj_info = prj_map.value(ui->comboBox_prj->currentData().toInt());
 
-    QString dirName = QFileDialog::getExistingDirectory(this, tr("select dir"), prj_info.prj_path);
+    QString dirName = QFileDialog::getExistingDirectory(this, tr("select dir"), prj_info.prj_src_code_path);
 
     qDebug() << dirName;
     if (dirName != nullptr) {
@@ -83,7 +83,7 @@ void Dialog_config::on_pushButton_setSourcefolder_clicked()
 
         ui->lineEdit_srcCodePath->setText(dirName);
 
-        prj_info.prj_path = dirName;
+        prj_info.prj_src_code_path = dirName;
         dialogConfig_parent->setPrjInfo(prj_info);
     }
 }
@@ -109,6 +109,43 @@ void Dialog_config::on_pushButton_setBinFilePath_clicked()
 }
 
 /*
+ * set project server path
+ */
+void Dialog_config::on_pushButton_setPrjServerPath_clicked()
+{
+    PRJ_INFO_s prj_info = prj_map.value(ui->comboBox_prj->currentData().toInt());
+
+    QString prjServerPath = QFileDialog::getExistingDirectory(this, tr("select file"), "");
+
+    qDebug() << prjServerPath;
+    if (prjServerPath != nullptr) {
+        prjServerPath = prjServerPath.replace("/", "\\");
+
+        ui->lineEdit_prjServerPath->setText(prjServerPath);
+
+        prj_info.prj_server_path = prjServerPath;
+        dialogConfig_parent->setPrjInfo(prj_info);
+    }
+}
+
+void Dialog_config::on_pushButton_setPrjPath_clicked()
+{
+    PRJ_INFO_s prj_info = prj_map.value(ui->comboBox_prj->currentData().toInt());
+
+    QString prjFilePath = QFileDialog::getExistingDirectory(this, tr("select file"), "");
+
+    qDebug() << prjFilePath;
+    if (prjFilePath != nullptr) {
+        prjFilePath = prjFilePath.replace("/", "\\");
+
+        ui->lineEdit_prjFilePath->setText(prjFilePath);
+
+        prj_info.prj_path = prjFilePath;
+        dialogConfig_parent->setPrjInfo(prj_info);
+    }
+}
+
+/*
  * set tool path
  */
 void Dialog_config::on_pushButton_setToolPath_clicked()
@@ -121,7 +158,7 @@ void Dialog_config::on_pushButton_setToolPath_clicked()
     if (toolFilePath != nullptr) {
         toolFilePath = toolFilePath.replace("/", "\\");
 
-        ui->lineEdit_binFilePaht->setText(toolFilePath);
+        ui->lineEdit_toolFilePath->setText(toolFilePath);
 
         prj_info.prj_tool_path = toolFilePath;
         dialogConfig_parent->setPrjInfo(prj_info);
@@ -131,7 +168,7 @@ void Dialog_config::on_pushButton_setToolPath_clicked()
 void Dialog_config::slot_comboBox_prj_idxChanged(int cur_idx)
 {
     qDebug() << cur_idx;
-    QString prj_src_path = prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_path;
+    QString prj_src_path = prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_src_code_path;
     QString prj_binFilePath = prj_map.value(ui->comboBox_prj->currentData().toInt()).bin_file_path;
     QString prj_toolFilePaht = prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_tool_path;
     //qDebug() << ui->comboBox_prj->currentData().toInt();
@@ -139,5 +176,9 @@ void Dialog_config::slot_comboBox_prj_idxChanged(int cur_idx)
     ui->lineEdit_srcCodePath->setText(prj_src_path);
     ui->lineEdit_binFilePaht->setText(prj_binFilePath);
     ui->lineEdit_toolFilePath->setText(prj_toolFilePaht);
+    ui->lineEdit_prjServerPath->setText(prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_server_path);
+    ui->lineEdit_prjFilePath->setText(prj_map.value(ui->comboBox_prj->currentData().toInt()).prj_path);
 }
+
+
 

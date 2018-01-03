@@ -24,8 +24,13 @@ private slots:
     void on_pushButton_setSourcefolder_clicked();
     void on_pushButton_setBinFilePath_clicked();
     void on_pushButton_setToolPath_clicked();
+    void on_pushButton_setPrjPath_clicked();
 
     void slot_comboBox_prj_idxChanged(int cur_idx);
+
+
+
+    void on_pushButton_setPrjServerPath_clicked();
 
 public:
     void initDialogConfig();

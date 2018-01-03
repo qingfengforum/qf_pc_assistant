@@ -35,14 +35,45 @@
      <x>30</x>
      <y>20</y>
      <width>491</width>
-     <height>331</height>
+     <height>311</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="1">
+    <item row="5" column="3">
+     <widget class="QPushButton" name="pushButton_setToolFilePath">
+      <property name="text">
+       <string>set tool path</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>tool file path: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLineEdit" name="lineEdit_prjName">
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QPushButton" name="pushButton_setBinFIlePath">
+      <property name="text">
+       <string>set bin path</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
      <widget class="QLineEdit" name="lineEdit_binFilePath"/>
     </item>
-    <item row="1" column="2">
+    <item row="1" column="3">
      <widget class="QPushButton" name="pushButton_setSrcCodePath">
       <property name="text">
        <string>set src path</string>
@@ -56,12 +87,8 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="pushButton_setBinFIlePath">
-      <property name="text">
-       <string>set bin path</string>
-      </property>
-     </widget>
+    <item row="1" column="2">
+     <widget class="QLineEdit" name="lineEdit_srcCodePath"/>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_2">
@@ -77,33 +104,40 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_srcCodePath"/>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit_prjName">
-      <property name="maximumSize">
-       <size>
-        <width>150</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
+    <item row="5" column="2">
      <widget class="QLineEdit" name="lineEdit_toolFilePath"/>
     </item>
-    <item row="3" column="2">
-     <widget class="QPushButton" name="pushButton_setToolFilePath">
+    <item row="4" column="3">
+     <widget class="QPushButton" name="pushButton_setPrjFilePath">
       <property name="text">
-       <string>set tool path</string>
+       <string>set prj path</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_3">
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>tool file path: </string>
+       <string>prj path:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLineEdit" name="lineEdit_prjFilePath"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>prj server path:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLineEdit" name="lineEdit_prjServerPath"/>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="pushButton_setPrjServerPath">
+      <property name="text">
+       <string>set server path</string>
       </property>
      </widget>
     </item>
