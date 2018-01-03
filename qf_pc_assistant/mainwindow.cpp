@@ -201,6 +201,20 @@ void MainWindow::action_configPrj()
     dialogConfig->show();
 }
 
+void MainWindow::on_pushButton_openBinFileFolder_clicked()
+{
+    for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
+        if  (ui->comboBox_prjName->currentText() == prj_map.value(i.key()).prj_name) {
+           openFolder(prj_map.value(i.key()).bin_file_path);
+            break;
+        }
+    }
+}
+
+void MainWindow::on_pushButton_openTargetForder_clicked()
+{
+    openFolder(ui->comboBox_drivePath->currentText());
+}
 
 void MainWindow::on_pushButton_ejectUsb_clicked()
 {
@@ -442,6 +456,24 @@ void MainWindow::refreshComboBox_prjName()
     }
 }
 
+void MainWindow::openFolder(QString folderPath)
+{
+    if (folderPath != nullptr) {
+        folderPath.replace("/", "\\");
+        qDebug() << "open"  << folderPath;
+        QProcess::startDetached("explorer "+ folderPath);
+    } else {
+        showWarningMessage("folder path is nullptr");
+    }
+}
+
+void MainWindow::showWarningMessage(const QString warningMessage)
+{
+    QMessageBox msg;
+    msg.setText(warningMessage);
+    msg.exec();
+}
+
 /********************************************************
  * public funcs
  * ******************************************************/
@@ -467,7 +499,4 @@ void MainWindow::delPrjInfoByIdx(int idx)
    prj_map.remove(idx);
    refreshComboBox_prjName();
 }
-
-
-
 

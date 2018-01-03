@@ -64,6 +64,9 @@ private slots:
     void action_addPrj();
     void action_configPrj();
 
+    /** buttons */
+    void on_pushButton_openBinFileFolder_clicked();
+    void on_pushButton_openTargetForder_clicked();
     void on_pushButton_ejectUsb_clicked();
 
 private:
@@ -79,6 +82,11 @@ private:
     /** refresh */
     void refreshComboBox_prjName();
 
+    /** open folder */
+    void openFolder(QString folderPath);
+
+    /** show warning message */
+    void showWarningMessage(const QString warningMessage);
 public:
     QMap<int, PRJ_INFO_s> getPrjInfoMap();
     void setPrjInfo(PRJ_INFO_s prjInfo);
