@@ -51,9 +51,6 @@ private slots:
     void on_pushButton_refreshDrives_clicked();
     void on_pushButton_startCommTool_clicked();
 
-    void on_pushButton_configSave_clicked();
-    void on_pushButton_configLoad_clicked();
-
     /** mouse event */
     void leaveEvent(QEvent *event);
     void enterEvent(QEvent *event);
@@ -65,16 +62,20 @@ private slots:
     /** actions */
     void action_addPrj();
     void action_configPrj();
+    void action_file_save(void);
+    void action_file_load(void);
 
     /** buttons */
     void on_pushButton_openBinFileFolder_clicked();
     void on_pushButton_openTargetForder_clicked();
     void on_pushButton_openServerPrjFolder_clicked();
     void on_pushButton_openLocalPrjFolder_clicked();
+    void on_pushButton_refresh_useableCommPort_clicked();
+
+    /** not used temp */
+    void on_pushButton_configSave_clicked();
+    void on_pushButton_configLoad_clicked();
     void on_pushButton_ejectUsb_clicked();
-
-
-
 
 
 private:
@@ -89,6 +90,7 @@ private:
 
     /** refresh */
     void refreshComboBox_prjName();
+    void refreshSerialPortNum();
 
     /** open folder */
     void openFolder(QString folderPath);

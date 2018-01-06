@@ -207,6 +207,7 @@ Makefile: ../qf_pc_assistant/qf_pc_assistant.pro D:/install/QT/5.7/mingw53_32/mk
 		D:/install/QT/5.7/mingw53_32/lib/qtmain.prl \
 		D:/install/QT/5.7/mingw53_32/lib/Qt5Widgets.prl \
 		D:/install/QT/5.7/mingw53_32/lib/Qt5Gui.prl \
+		D:/install/QT/5.7/mingw53_32/lib/Qt5SerialPort.prl \
 		D:/install/QT/5.7/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ -o Makefile ..\qf_pc_assistant\qf_pc_assistant.pro
 D:/install/QT/5.7/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -357,6 +358,7 @@ D:/install/QT/5.7/mingw53_32/mkspecs/features/lex.prf:
 D:/install/QT/5.7/mingw53_32/lib/qtmain.prl:
 D:/install/QT/5.7/mingw53_32/lib/Qt5Widgets.prl:
 D:/install/QT/5.7/mingw53_32/lib/Qt5Gui.prl:
+D:/install/QT/5.7/mingw53_32/lib/Qt5SerialPort.prl:
 D:/install/QT/5.7/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ -o Makefile ..\qf_pc_assistant\qf_pc_assistant.pro

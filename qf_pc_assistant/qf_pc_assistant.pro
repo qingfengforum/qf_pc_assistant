@@ -26,4 +26,6 @@ FORMS    += mainwindow.ui \
     dialog_menu_addproject.ui
 LIBS += -lUser32
 
+QT       += serialport
+
 RC_ICONS = app.ico #add app icon

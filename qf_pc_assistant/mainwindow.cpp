@@ -11,6 +11,7 @@
 #include <QMouseEvent>
 #include <windows.h>
 #include <stdio.h>
+#include <QtSerialPort/QSerialPortInfo>
 
 //PRJ_INFO_s MainWindow::prj_info_table[] = {0};
 
@@ -192,6 +193,16 @@ void MainWindow::action_configPrj()
     dialogConfig->show();
 }
 
+void MainWindow::action_file_save(void)
+{
+    saveConfig();
+}
+
+void MainWindow::action_file_load(void)
+{
+    loadConfig();
+}
+
 void MainWindow::on_pushButton_openBinFileFolder_clicked()
 {
     for (auto i=prj_map.cbegin(); i!=prj_map.cend(); i++) {
@@ -227,6 +238,11 @@ void MainWindow::on_pushButton_openLocalPrjFolder_clicked()
             break;
         }
     }
+}
+
+void MainWindow::on_pushButton_refresh_useableCommPort_clicked()
+{
+    refreshSerialPortNum();
 }
 
 void MainWindow::on_pushButton_ejectUsb_clicked()
@@ -297,6 +313,9 @@ void MainWindow::initComboBox()
 
     /** drives list */
     refreshDrives();
+
+    /** useable serial ports*/
+    refreshSerialPortNum();
 }
 
 bool MainWindow::copyFile(QString srcFilenName, QString destFileName, bool overRideFile)
@@ -352,6 +371,12 @@ void MainWindow::initMenuContext()
     /** config project  */
     ui->actionAdd_project->setStatusTip("config project");
     connect(ui->actionConfig_project, &QAction::triggered, this, &MainWindow::action_configPrj);
+
+    /** save and load*/
+    ui->actionAdd_project->setStatusTip(" save projects settings ");
+    connect(ui->actionFile_save, &QAction::triggered, this, &MainWindow::action_file_save);
+    ui->actionAdd_project->setStatusTip(" load projects settings ");
+    connect(ui->actionFile_load, &QAction::triggered, this, &MainWindow::action_file_load);
 }
 
 int MainWindow::loadConfig()
@@ -492,6 +517,18 @@ void MainWindow::refreshComboBox_prjName()
     }
 }
 
+void MainWindow::refreshSerialPortNum()
+{
+    ui->comboBox_useableCommPort->clear();
+    const auto infos = QSerialPortInfo::availablePorts();
+    for (const QSerialPortInfo &info : infos) {
+        QStringList list;
+        list << info.portName();
+
+        ui->comboBox_useableCommPort->addItem(list.first(), list);
+    }
+}
+
 void MainWindow::openFolder(QString folderPath)
 {
     if (folderPath != nullptr) {
@@ -535,7 +572,4 @@ void MainWindow::delPrjInfoByIdx(int idx)
    prj_map.remove(idx);
    refreshComboBox_prjName();
 }
-
-
-
 
